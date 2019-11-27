@@ -1,0 +1,162 @@
+//
+//  MoviesListViewModel.swift
+//  App
+//
+//  Created by Oleh Kudinov on 01.10.18.
+//
+
+import Foundation
+
+enum MoviesListViewModelRoute {
+    case initial
+    case showMovieDetail(title: String, overview: String, posterPlaceholderImage: Data?, posterPath: String?)
+    case showMovieQueriesSuggestions(delegate: MoviesQueryListViewModelDelegate)
+    case closeMovieQueriesSuggestions
+}
+
+enum MoviesListViewModelLoading {
+    case none
+    case fullScreen
+    case nextPage
+}
+
+protocol MoviesListViewModelInput {
+    func viewDidLoad()
+    func didLoadNextPage()
+    func didSearch(query: String)
+    func didCancelSearch()
+    func showQueriesSuggestions()
+    func closeQueriesSuggestions()
+    func didSelect(item: MoviesListItemViewModel)
+}
+
+protocol MoviesListViewModelOutput {
+    var route: Observable<MoviesListViewModelRoute> { get }
+    var items: Observable<[MoviesListItemViewModel]> { get }
+    var loadingType: Observable<MoviesListViewModelLoading> { get }
+    var query: Observable<String> { get }
+    var error: Observable<String> { get }
+    var isEmpty: Bool { get }
+}
+
+protocol MoviesListViewModel: MoviesListViewModelInput, MoviesListViewModelOutput {}
+
+final class DefaultMoviesListViewModel: MoviesListViewModel {
+    
+    private(set) var currentPage: Int = 0
+    private var totalPageCount: Int = 1
+    
+    var hasMorePages: Bool {
+        return currentPage < totalPageCount
+    }
+    var nextPage: Int {
+        guard hasMorePages else { return currentPage }
+        return currentPage + 1
+    }
+    
+    private let searchMoviesUseCase: SearchMoviesUseCase
+    private let posterImagesRepository: PosterImagesRepository
+    
+    private var moviesLoadTask: Cancellable? { willSet { moviesLoadTask?.cancel() } }
+    
+    // MARK: - OUTPUT
+    let route: Observable<MoviesListViewModelRoute> = Observable(.initial)
+    let items: Observable<[MoviesListItemViewModel]> = Observable([MoviesListItemViewModel]())
+    let loadingType: Observable<MoviesListViewModelLoading> = Observable(.none)
+    let query: Observable<String> = Observable("")
+    let error: Observable<String> = Observable("")
+    var isEmpty: Bool { return items.value.isEmpty }
+    
+    @discardableResult
+    init(searchMoviesUseCase: SearchMoviesUseCase,
+         posterImagesRepository: PosterImagesRepository) {
+        self.searchMoviesUseCase = searchMoviesUseCase
+        self.posterImagesRepository = posterImagesRepository
+    }
+    
+    private func appendPage(moviesPage: MoviesPage) {
+        self.currentPage = moviesPage.page
+        self.totalPageCount = moviesPage.totalPages
+        self.items.value = items.value + moviesPage.movies.map {
+            DefaultMoviesListItemViewModel(movie: $0,
+                                           posterImagesRepository: posterImagesRepository)
+        }
+    }
+    
+    private func resetPages() {
+        currentPage = 0
+        totalPageCount = 1
+        items.value.removeAll()
+    }
+    
+    private func load(movieQuery: MovieQuery, loadingType: MoviesListViewModelLoading) {
+        self.loadingType.value = loadingType
+        self.query.value = movieQuery.query
+        
+        let moviesRequest = SearchMoviesUseCaseRequestValue(query: movieQuery, page: nextPage)
+        moviesLoadTask = searchMoviesUseCase.execute(requestValue: moviesRequest) { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let moviesPage):
+                strongSelf.appendPage(moviesPage: moviesPage)
+            case .failure(let error):
+                strongSelf.handle(error: error)
+            }
+            strongSelf.loadingType.value = .none
+        }
+    }
+    
+    private func handle(error: Error) {
+        self.error.value = error.isInternetConnectionError ?
+            NSLocalizedString("No internet connection", comment: "") :
+            NSLocalizedString("Failed loading movies", comment: "")
+    }
+    
+    private func update(movieQuery: MovieQuery) {
+        resetPages()
+        load(movieQuery: movieQuery, loadingType: .fullScreen)
+    }
+}
+
+// MARK: - INPUT. View event methods
+extension DefaultMoviesListViewModel {
+
+    func viewDidLoad() { }
+    
+    func didLoadNextPage() {
+        guard hasMorePages, loadingType.value == .none else { return }
+        load(movieQuery: MovieQuery(query: query.value),
+             loadingType: .nextPage)
+    }
+    
+    func didSearch(query: String) {
+        guard !query.isEmpty else { return }
+        update(movieQuery: MovieQuery(query: query))
+    }
+    
+    func didCancelSearch() {
+        moviesLoadTask?.cancel()
+    }
+
+    func showQueriesSuggestions() {
+        route.value = .showMovieQueriesSuggestions(delegate: self)
+    }
+    
+    func closeQueriesSuggestions() {
+        route.value = .closeMovieQueriesSuggestions
+    }
+    
+    func didSelect(item: MoviesListItemViewModel) {
+        route.value = .showMovieDetail(title: item.title,
+                                       overview: item.overview,
+                                       posterPlaceholderImage: item.posterImage.value,
+                                       posterPath: item.posterPath)
+    }
+}
+
+// MARK: - Delegate method from another model views
+extension DefaultMoviesListViewModel: MoviesQueryListViewModelDelegate {
+    func moviesQueriesListDidSelect(movieQuery: MovieQuery) {
+        update(movieQuery: movieQuery)
+    }
+}
