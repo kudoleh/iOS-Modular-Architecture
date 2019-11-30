@@ -1,0 +1,6 @@
+framework module Pods_MoviesSearch_Example {
+  umbrella header "Pods-MoviesSearch_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

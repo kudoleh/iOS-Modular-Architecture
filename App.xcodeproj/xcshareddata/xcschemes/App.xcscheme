@@ -81,6 +81,16 @@
                ReferencedContainer = "container:DevPods/Networking/Example/Networking.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BuildableName = "MoviesSearch_Tests.xctest"
+               BlueprintName = "MoviesSearch_Tests"
+               ReferencedContainer = "container:DevPods/MoviesSearch/Example/MoviesSearch.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

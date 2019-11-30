@@ -1,0 +1,6 @@
+framework module MoviesSearch {
+  umbrella header "MoviesSearch-umbrella.h"
+
+  export *
+  module * { export * }
+}

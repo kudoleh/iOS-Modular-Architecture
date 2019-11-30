@@ -18,5 +18,5 @@
   "platforms": {
     "ios": "10.0"
   },
-  "source_files": "Networking/Classes/**/*"
+  "source_files": "Networking/**/*"
 }

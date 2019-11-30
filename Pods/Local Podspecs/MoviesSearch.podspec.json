@@ -1,0 +1,28 @@
+{
+  "name": "MoviesSearch",
+  "version": "0.1.0",
+  "summary": "A short description of MoviesSearch.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/olehkudinovolx/MoviesSearch",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "olehkudinovolx": "oleh.kudinov@olx.com"
+  },
+  "source": {
+    "git": "https://github.com/olehkudinovolx/MoviesSearch.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "MoviesSearch/**/*.{swift}",
+  "resources": "MoviesSearch/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}",
+  "dependencies": {
+    "Networking": [
+
+    ]
+  }
+}

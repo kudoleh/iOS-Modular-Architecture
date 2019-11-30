@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Networking
+import MoviesSearch
 
 final class AppDIContainer {
     
@@ -28,9 +29,9 @@ final class AppDIContainer {
     }()
     
     // DIContainers of scenes
-    func makeMoviesSceneDIContainer() -> MoviesSceneDIContainer {
-        let dependencies = MoviesSceneDIContainer.Dependencies(apiDataTransferService: apiDataTransferService,
-                                                               imageDataTransferService: imageDataTransferService)
-        return MoviesSceneDIContainer(dependencies: dependencies)
+    func makeMoviesSearchDIContainer() -> MoviesSearch.DIContainer {
+        let dependencies = MoviesSearch.DIContainer.Dependencies(apiDataTransferService: apiDataTransferService,
+                                                                 imageDataTransferService: imageDataTransferService)
+        return DIContainer(dependencies: dependencies)
     }
 }

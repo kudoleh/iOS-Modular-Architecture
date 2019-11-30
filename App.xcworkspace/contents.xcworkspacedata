@@ -10,4 +10,7 @@
    <FileRef
       location = "group:DevPods/Networking/Example/Networking.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:DevPods/MoviesSearch/Example/MoviesSearch.xcodeproj">
+   </FileRef>
 </Workspace>
