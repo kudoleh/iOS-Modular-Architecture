@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Networking
 
 extension DataTransferError: ConnectionError {
     public var isInternetConnectionError: Bool {

@@ -33,7 +33,7 @@ public class Endpoint<R>: ResponseRequestable {
     public var bodyEncoding: BodyEncoding
     public var responseDecoder: ResponseDecoder
     
-    init(path: String,
+    public init(path: String,
          isFullPath: Bool = false,
          method: HTTPMethodType = .get,
          queryParameters: [String: Any] = [:],

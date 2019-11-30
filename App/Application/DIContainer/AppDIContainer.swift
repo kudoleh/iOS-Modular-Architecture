@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import  UIKit
+import UIKit
+import Networking
 
 final class AppDIContainer {
     

@@ -1,0 +1,22 @@
+{
+  "name": "Networking",
+  "version": "0.1.0",
+  "summary": "A short description of Networking.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/olehkudinovolx/Networking",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "olehkudinovolx": "oleh.kudinov@olx.com"
+  },
+  "source": {
+    "git": "https://github.com/olehkudinovolx/Networking.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "Networking/Classes/**/*"
+}

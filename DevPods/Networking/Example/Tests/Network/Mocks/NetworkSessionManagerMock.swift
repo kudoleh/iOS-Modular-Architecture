@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@testable import Networking
 
 struct NetworkSessionManagerMock: NetworkSessionManager {
     let response: HTTPURLResponse?

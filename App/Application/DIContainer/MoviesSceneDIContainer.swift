@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Networking
 
 final class MoviesSceneDIContainer {
     
