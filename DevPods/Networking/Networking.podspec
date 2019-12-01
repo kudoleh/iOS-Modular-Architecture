@@ -14,6 +14,8 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'Networking/**/*'
+  s.source_files = 'Networking/**/*.{swift}'
+  
+  s.resources = "Networking/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}"
   
 end

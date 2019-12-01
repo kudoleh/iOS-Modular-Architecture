@@ -8,7 +8,6 @@ TODO: Add long description of the pod here.
                        DESC
 
   s.homepage         = 'https://github.com/olehkudinovolx/MoviesSearch'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'olehkudinovolx' => 'oleh.kudinov@olx.com' }
   s.source           = { :git => 'https://github.com/olehkudinovolx/MoviesSearch.git', :tag => s.version.to_s }
