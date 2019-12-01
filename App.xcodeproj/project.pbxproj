@@ -13,6 +13,7 @@
 		1FA53397201E1FDE00747E55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA53395201E1FDE00747E55 /* LaunchScreen.storyboard */; };
 		1FA533D7201EF2B500747E55 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA533D6201EF2B500747E55 /* AppDIContainer.swift */; };
 		1FF082AC2394383800876A22 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FF082AE2394383800876A22 /* Localizable.strings */; };
+		1FF082BA2394512700876A22 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FF082AE2394383800876A22 /* Localizable.strings */; };
 		B470B09A867FD58C77C8AD3C /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 247B34623D1E316CE2D06A06 /* Pods_App.framework */; };
 		C395B176F7C192639EDE15A6 /* libPods-AppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A2C5E15C2E8551B7C2E41D /* libPods-AppUITests.a */; };
 		FC2B715C2156FF93002BD59E /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2B715B2156FF93002BD59E /* AppAppearance.swift */; };
@@ -260,6 +261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FF082BA2394512700876A22 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
