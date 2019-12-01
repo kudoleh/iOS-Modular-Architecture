@@ -35,6 +35,7 @@ target 'Networking_Example' do
   
   target 'Networking_Tests' do
     inherit! :search_paths
+    networking_pod
   end
 end
 
@@ -46,5 +47,6 @@ target 'MoviesSearch_Example' do
   
   target 'MoviesSearch_Tests' do
     inherit! :search_paths
+    movies_search_pod
   end
 end
