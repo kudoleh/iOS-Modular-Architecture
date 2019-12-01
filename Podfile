@@ -4,11 +4,11 @@ workspace 'App.xcworkspace'
 project 'App.xcodeproj'
 
 def networking_pod
-  pod 'Networking', :path => 'DevPods/Networking'
+  pod 'Networking', :path => 'DevPods/Networking', :testspecs => ['Tests'] 
 end
 
 def movies_search_pod
-  pod 'MoviesSearch', :path => 'DevPods/MoviesSearch'
+  pod 'MoviesSearch', :path => 'DevPods/MoviesSearch', :testspecs => ['Tests']
 end
 
 def development_pods
@@ -18,7 +18,6 @@ end
 
 target 'App' do
   use_frameworks!
-
   # Pods for App
   development_pods
 end
@@ -32,11 +31,6 @@ target 'Networking_Example' do
   project 'DevPods/Networking/Example/Networking.xcodeproj'
   
   networking_pod
-  
-  target 'Networking_Tests' do
-    inherit! :search_paths
-    networking_pod
-  end
 end
 
 target 'MoviesSearch_Example' do
@@ -44,9 +38,4 @@ target 'MoviesSearch_Example' do
   project 'DevPods/MoviesSearch/Example/MoviesSearch.xcodeproj'
   
   movies_search_pod
-  
-  target 'MoviesSearch_Tests' do
-    inherit! :search_paths
-    movies_search_pod
-  end
 end

@@ -14,8 +14,12 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'Networking/**/*.{swift}'
+  s.source_files = 'Networking/Module/**/*.{swift}'
   
-  s.resources = "Networking/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}"
+  s.resources = "Networking/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}"
+
+  s.test_spec 'Tests' do |test_spec|
+    test_spec.source_files = 'Networking/Tests/**/*.{swift}'
+  end  
   
 end

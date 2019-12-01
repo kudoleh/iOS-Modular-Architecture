@@ -1,11 +1,16 @@
 PODS:
   - MoviesSearch (0.1.0):
     - Networking
+  - MoviesSearch/Tests (0.1.0):
+    - Networking
   - Networking (0.1.0)
+  - Networking/Tests (0.1.0)
 
 DEPENDENCIES:
   - MoviesSearch (from `DevPods/MoviesSearch`)
+  - MoviesSearch/Tests (from `DevPods/MoviesSearch`)
   - Networking (from `DevPods/Networking`)
+  - Networking/Tests (from `DevPods/Networking`)
 
 EXTERNAL SOURCES:
   MoviesSearch:
@@ -14,9 +19,9 @@ EXTERNAL SOURCES:
     :path: DevPods/Networking
 
 SPEC CHECKSUMS:
-  MoviesSearch: 4146d9ff940f9f77e3f27f042ce4d560d7e658ab
-  Networking: a2b4caef332a519ed3d1e483aa19a3216fd2883e
+  MoviesSearch: 4b5619af7a83eb6823bda7dd8b48afa0e638506f
+  Networking: 35b2d4f60e37e0d94f14e6bc5c12fdd842bfe110
 
-PODFILE CHECKSUM: 6b4bb191ffb818b9c9c54fba803d8e61c5337add
+PODFILE CHECKSUM: 52ffd30cccd055be8b319178937885e6f73a6eb4
 
 COCOAPODS: 1.8.4

@@ -20,20 +20,6 @@
                ReferencedContainer = "container:Networking.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "Networking_Tests.xctest"
-               BlueprintName = "Networking_Tests"
-               ReferencedContainer = "container:Networking.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -55,10 +41,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "Networking_Tests.xctest"
-               BlueprintName = "Networking_Tests"
-               ReferencedContainer = "container:Networking.xcodeproj">
+               BlueprintIdentifier = "EBDE3E4CF472CEA52FA7CA22933EE6B3"
+               BuildableName = "Networking-Unit-Tests.xctest"
+               BlueprintName = "Networking-Unit-Tests"
+               ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

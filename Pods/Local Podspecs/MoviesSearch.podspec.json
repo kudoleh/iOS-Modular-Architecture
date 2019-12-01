@@ -18,11 +18,18 @@
   "platforms": {
     "ios": "10.0"
   },
-  "source_files": "MoviesSearch/**/*.{swift}",
-  "resources": "MoviesSearch/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}",
+  "source_files": "MoviesSearch/Module/**/*.{swift}",
+  "resources": "MoviesSearch/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}",
   "dependencies": {
     "Networking": [
 
     ]
-  }
+  },
+  "testspecs": [
+    {
+      "name": "Tests",
+      "test_type": "unit",
+      "source_files": "MoviesSearch/Tests/**/*.{swift}"
+    }
+  ]
 }
