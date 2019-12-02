@@ -1,7 +1,7 @@
 # Modular-Architecture
 Modular Architecture on iOS
 
-![Alt text](ModulesDependencies.png?raw=true "Modules Dependencies")
+![Alt text](README_FILES/ModulesDependencies.png?raw=true "Modules Dependencies")
 
 ## Requirements: 
-* Xcode Version 11.2.1+  Swift 5.0+
+* Xcode Version 11.2.1+  Swift 5.0+ CocoaPods 1.8.4+
