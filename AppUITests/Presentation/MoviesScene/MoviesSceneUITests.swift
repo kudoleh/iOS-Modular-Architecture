@@ -39,6 +39,6 @@ class MoviesSceneUITests: XCTestCase {
     }
     
     private func localized(_ key: String) -> String {
-        return NSLocalizedString(key, bundle: Bundle(for: Self.self), comment: "")
+        return NSLocalizedString(key, comment: "")
     }
 }

@@ -1,4 +1,7 @@
 PODS:
+  - Alamofire (4.9.1)
+  - Authentication (0.1.0):
+    - Alamofire (= 4.9.1)
   - MoviesSearch (0.1.0):
     - Networking
   - MoviesSearch/Tests (0.1.0):
@@ -7,21 +10,30 @@ PODS:
   - Networking/Tests (0.1.0)
 
 DEPENDENCIES:
+  - Authentication (from `DevPods/Authentication`)
   - MoviesSearch (from `DevPods/MoviesSearch`)
   - MoviesSearch/Tests (from `DevPods/MoviesSearch`)
   - Networking (from `DevPods/Networking`)
   - Networking/Tests (from `DevPods/Networking`)
 
+SPEC REPOS:
+  trunk:
+    - Alamofire
+
 EXTERNAL SOURCES:
+  Authentication:
+    :path: DevPods/Authentication
   MoviesSearch:
     :path: DevPods/MoviesSearch
   Networking:
     :path: DevPods/Networking
 
 SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Authentication: 82974da7cf060751f6c7c3c70f947eae900fccdb
   MoviesSearch: 4b5619af7a83eb6823bda7dd8b48afa0e638506f
   Networking: 35b2d4f60e37e0d94f14e6bc5c12fdd842bfe110
 
-PODFILE CHECKSUM: 52ffd30cccd055be8b319178937885e6f73a6eb4
+PODFILE CHECKSUM: e134b46ee82d8fbedf78fac8e25d288a1d57bc6a
 
 COCOAPODS: 1.8.4

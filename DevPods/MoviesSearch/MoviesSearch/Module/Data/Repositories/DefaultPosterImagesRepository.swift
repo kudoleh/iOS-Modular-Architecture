@@ -31,7 +31,6 @@ extension DefaultPosterImagesRepository: PosterImagesRepository {
             switch response {
             case .success(let data):
                 completion(.success(data))
-                return
             case .failure(let error):
                 if case let DataTransferError.networkFailure(networkError) = error, networkError.isNotFoundError,
                     let imageNotFoundData = strongSelf.imageNotFoundData {
@@ -39,7 +38,6 @@ extension DefaultPosterImagesRepository: PosterImagesRepository {
                     return
                 }
                 completion(.failure(error))
-                return
             }
         }
         return RepositoryTask(networkTask: networkTask)

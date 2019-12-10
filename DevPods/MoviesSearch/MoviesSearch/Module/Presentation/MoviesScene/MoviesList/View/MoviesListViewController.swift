@@ -25,7 +25,7 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
     
     final class func create(with viewModel: MoviesListViewModel,
                             moviesListViewControllersFactory: MoviesListViewControllersFactory) -> MoviesListViewController {
-        let view = MoviesListViewController.instantiateViewController(Bundle(for: Self.self))
+        let view = MoviesListViewController.instantiateViewController(Bundle(for: Self.self).resource)
         view.viewModel = viewModel
         view.moviesListViewControllersFactory = moviesListViewControllersFactory
         return view
@@ -42,7 +42,7 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
         viewModel.viewDidLoad()
     }
     
-    func bind(to viewModel: MoviesListViewModel) {
+    private func bind(to viewModel: MoviesListViewModel) {
         viewModel.route.observe(on: self) { [weak self] in self?.handle($0) }
         viewModel.items.observe(on: self) { [weak self] in self?.moviesTableViewController?.items = $0 }
         viewModel.query.observe(on: self) { [weak self] in self?.updateSearchController(query: $0) }

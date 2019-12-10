@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import Networking
+import Authentication
+import Alamofire
 import MoviesSearch
 
 final class AppDIContainer {
@@ -15,24 +17,36 @@ final class AppDIContainer {
     lazy var appConfigurations = AppConfigurations()
     
     // MARK: - Network
+    lazy var sessionManager = AuthNetworkSessionManager()
     lazy var apiDataTransferService: DataTransferService = {
         let config = ApiDataNetworkConfig(baseURL: URL(string: appConfigurations.apiBaseURL)!,
                                           queryParameters: ["api_key": appConfigurations.apiKey,
                                                             "language": NSLocale.preferredLanguages.first ?? "en"])
         
-        let apiDataNetwork = DefaultNetworkService(config: config)
+        let apiDataNetwork = DefaultNetworkService(config: config,
+                                                   sessionManager: sessionManager)
         return DefaultDataTransferService(with: apiDataNetwork)
     }()
     lazy var imageDataTransferService: DataTransferService = {
         let config = ApiDataNetworkConfig(baseURL: URL(string: appConfigurations.imagesBaseURL)!)
-        let imagesDataNetwork = DefaultNetworkService(config: config)
+        let imagesDataNetwork = DefaultNetworkService(config: config,
+                                                      sessionManager: sessionManager)
         return DefaultDataTransferService(with: imagesDataNetwork)
     }()
     
-    // DIContainers of scenes
+    // DIContainers of Features
     func makeMoviesSearchDIContainer() -> MoviesSearch.DIContainer {
         let dependencies = MoviesSearch.DIContainer.Dependencies(apiDataTransferService: apiDataTransferService,
                                                                  imageDataTransferService: imageDataTransferService)
         return DIContainer(dependencies: dependencies)
+    }
+}
+
+// Auth protocol conformance to NetworkSessionManager
+extension DataRequest: NetworkCancellable {}
+extension AuthNetworkSessionManager: NetworkSessionManager {
+    public func request(_ request: URLRequest, completion: @escaping CompletionHandler) -> NetworkCancellable {
+        let request: DataRequest = self.request(request, completion: completion)
+        return request
     }
 }

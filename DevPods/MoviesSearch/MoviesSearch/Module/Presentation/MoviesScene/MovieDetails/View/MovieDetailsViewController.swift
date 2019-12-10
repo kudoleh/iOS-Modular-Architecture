@@ -18,7 +18,7 @@ final class MovieDetailsViewController: UIViewController, StoryboardInstantiable
     var viewModel: MovieDetailsViewModel!
     
     final class func create(with viewModel: MovieDetailsViewModel) -> MovieDetailsViewController {
-        let view = MovieDetailsViewController.instantiateViewController(Bundle(for: Self.self))
+        let view = MovieDetailsViewController.instantiateViewController(Bundle(for: Self.self).resource)
         view.viewModel = viewModel
         return view
     }
@@ -30,7 +30,7 @@ final class MovieDetailsViewController: UIViewController, StoryboardInstantiable
         view.accessibilityLabel = NSLocalizedString("Movie details view", comment: "")
     }
     
-    func bind(to viewModel: MovieDetailsViewModel) {
+    private func bind(to viewModel: MovieDetailsViewModel) {
         viewModel.title.observe(on: self) { [weak self] in self?.title = $0 }
         viewModel.posterImage.observe(on: self) { [weak self] in self?.posterImageView.image = $0.flatMap { UIImage(data: $0) } }
         viewModel.overview.observe(on: self) { [weak self] in self?.overviewTextView.text = $0 }

@@ -16,7 +16,12 @@ TODO: Add long description of the pod here.
   
   s.source_files = 'MoviesSearch/Module/**/*.{swift}'
 
-  s.resources = "MoviesSearch/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}"
+  s.resources = 'MoviesSearch/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}'
+
+#  Uncomment if static framework, and comment s.resources
+#  s.resource_bundles = {
+#    'MoviesSearch' => ['MoviesSearch/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}']
+#  }
 
   s.test_spec 'Tests' do |test_spec|
     test_spec.source_files = 'MoviesSearch/Tests/**/*.{swift}'

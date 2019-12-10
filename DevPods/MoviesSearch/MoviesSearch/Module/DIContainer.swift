@@ -49,10 +49,9 @@ public final class DIContainer {
                                               moviesQueriesPersistentStorage: moviesQueriesStorage)
     }
     func makePosterImagesRepository() -> PosterImagesRepository {
+        
         return DefaultPosterImagesRepository(dataTransferService: dependencies.imageDataTransferService,
-                                             imageNotFoundData: UIImage(named: "image_not_found",
-                                                                        in: Bundle(for: Self.self),
-                                                                        compatibleWith: nil)?.pngData())
+                                             imageNotFoundData: (#imageLiteral(resourceName: "image_not_found") as LiteralBundleImage).image?.pngData())
     }
     
     // MARK: - Movies List

@@ -16,10 +16,10 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'Networking/Module/**/*.{swift}'
   
-  s.resources = "Networking/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}"
+  s.resources = 'Networking/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}'
 
   s.test_spec 'Tests' do |test_spec|
     test_spec.source_files = 'Networking/Tests/**/*.{swift}'
-  end  
-  
+  end
+
 end

@@ -12,7 +12,7 @@ final class MoviesQueriesTableViewController: UITableViewController, StoryboardI
     private var viewModel: MoviesQueryListViewModel!
     
     final class func create(with viewModel: MoviesQueryListViewModel) -> MoviesQueriesTableViewController {
-        let view = MoviesQueriesTableViewController.instantiateViewController(Bundle(for: Self.self))
+        let view = MoviesQueriesTableViewController.instantiateViewController(Bundle(for: Self.self).resource)
         view.viewModel = viewModel
         return view
     }
@@ -27,7 +27,7 @@ final class MoviesQueriesTableViewController: UITableViewController, StoryboardI
         bind(to: viewModel)
     }
     
-    func bind(to viewModel: MoviesQueryListViewModel) {
+    private func bind(to viewModel: MoviesQueryListViewModel) {
         viewModel.items.observe(on: self) { [weak self] _ in self?.tableView.reloadData() }
     }
     

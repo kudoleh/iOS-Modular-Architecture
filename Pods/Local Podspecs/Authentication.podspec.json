@@ -1,0 +1,28 @@
+{
+  "name": "Authentication",
+  "version": "0.1.0",
+  "summary": "A short description of Authentication.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/olehkudinovolx/Authentication",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "olehkudinovolx": "oleh.kudinov@olx.com"
+  },
+  "source": {
+    "git": "https://github.com/olehkudinovolx/Authentication.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "Authentication/Module/**/*.{swift}",
+  "resources": "Authentication/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}",
+  "dependencies": {
+    "Alamofire": [
+      "4.9.1"
+    ]
+  }
+}

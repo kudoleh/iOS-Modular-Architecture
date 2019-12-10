@@ -24,12 +24,12 @@ final class CoreDataStorage {
     
     // MARK: - Core Data stack
     private lazy var persistentContainer: NSPersistentContainer = {
-        guard let modelURL = Bundle(for: Self.self).url(forResource: "CoreDataStorage", withExtension: "momd"),
+        guard let modelURL = Bundle(for: Self.self).resource.url(forResource: "CoreDataStorage", withExtension: "momd"),
             let mom = NSManagedObjectModel(contentsOf: modelURL)
             else {
                 fatalError("Unable to located Core Data model")
         }
-        let container = NSPersistentContainer(name: "CoreDataStorage", managedObjectModel: mom)
+        let container = NSPersistentContainer(name: "Name", managedObjectModel: mom)
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
