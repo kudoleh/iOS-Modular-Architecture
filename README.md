@@ -7,12 +7,12 @@
 <img src="README_FILES/ModulesDependenciesAuth.jpg" alt="Modules Dependencies with Authentication" width="650"/>
 </a>
 
-## Video 1: Extracting Networking Service Module. <a href="#steps-to-create-module">read steps</a>
+## Video 1: Extracting Networking Service Module. <a href="#steps-to-create-module">see steps</a>
 <a href="https://www.youtube.com/embed/e2D-omTFJSA">
 <img src="README_FILES/VideoPart1Preview.png" alt="Play video" width="650"/>
 </a>
 
-## Video 2: Extracting Movies Search Feature Module. <a href="#steps-to-create-module">read steps </a>
+## Video 2: Extracting Movies Search Feature Module. <a href="#steps-to-create-module">see steps </a>
 
 <a href="https://www.youtube.com/embed/m1lu_23iV78">
 <img src="README_FILES/VideoPart2Preview.png" alt="Play video" width="650"/>
@@ -71,7 +71,7 @@
 	* Add module's example target so we can develop this module from same main App's workspace:
 
 		```ruby
-		target ‘ModuleName_Example' do
+		target 'ModuleName_Example' do
 			use_frameworks!
 			project 'DevPods/ModuleName/Example/ModuleName.xcodeproj'
 			
