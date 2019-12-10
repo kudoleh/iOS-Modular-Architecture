@@ -3,12 +3,20 @@
 ![Alt text](README_FILES/ModulesDependencies.png?raw=true "Modules Dependencies")
 
 # Including Authentication module
-<img src="README_FILES/ModulesDependenciesAuth.jpg" alt="drawing" width="600"/>
-## Video 1: Extracting Networking Service Module
-[![Play video](README_FILES/VideoPart1Preview.png)](https://www.youtube.com/embed/e2D-omTFJSA "Play video")
+<a href="http://www.google.com">
+<img src="README_FILES/ModulesDependenciesAuth.jpg" alt="Modules Dependencies with Authentication" width="650"/>
+</a>
 
-## Video 2: Extracting Movies Search Feature Module
-[![Play video](README_FILES/VideoPart2Preview.png)](https://www.youtube.com/embed/m1lu_23iV78 "Play video")
+## Video 1: Extracting Networking Service Module. <a href="#steps-to-create-module">read steps</a>
+<a href="https://www.youtube.com/embed/e2D-omTFJSA">
+<img src="README_FILES/VideoPart1Preview.png" alt="Play video" width="650"/>
+</a>
+
+## Video 2: Extracting Movies Search Feature Module. <a href="#steps-to-create-module">read steps </a>
+
+<a href="https://www.youtube.com/embed/m1lu_23iV78">
+<img src="README_FILES/VideoPart2Preview.png" alt="Play video" width="650"/>
+</a>
 
 ## Requirements: 
 * **Xcode Version 11.2.1+  Swift 5.0+ CocoaPods 1.8.4+**
