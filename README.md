@@ -1,8 +1,9 @@
-# Modular Architecture on iOS
+# Modular Architecture on iOS. <a href="https://medium.com/">more info</a>
 
 ![Alt text](README_FILES/ModulesDependencies.png?raw=true "Modules Dependencies")
 
-# Including Authentication module
+# Including Authentication module. <a href="https://medium.com/">more info</a>
+
 <a href="http://www.google.com">
 <img src="README_FILES/ModulesDependenciesAuth.jpg" alt="Modules Dependencies with Authentication" width="650"/>
 </a>
@@ -162,7 +163,7 @@ Also closures or delegation can be used.
 * **Step 11. To make our Module's Example app to run unit test with `Cmd + U`, we follow the same step as we did for main App: (Video 2 10:10)**
     * Edit schema `ModuleName-Example`, inside Test section, add unit tests from Pod: `under Pod -> ModuleName-Unit-Tests`
     
-## Module as Static Library [Optional Step]: 
+## Module as Static Library [optional step]: 
 
 * Change your modules to be as Static Libraries (We made it as <a href="https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/OverviewOfDynamicLibraries.html">Dynamic Library</a> in previous steps):
 	 * Remove from main App's Podfile: `use_frameworks!`
@@ -192,7 +193,7 @@ Also closures or delegation can be used.
         ```
 	* If you have CoreData inside a module then open .xcdatamodeld file and change `Codegen` to `Manual/None` and `Create NSManagedObject Subclass..` for all entities
 	
-## Module's Testing in CI/CD [Optional Step]: 
+## Module's Testing in CI/CD [optional step]: 
 
 * To keep always our modules buildable we need to build and run tests for each module on our Pipeline in CI. As example we can use Travis CI and this Fastlane script:
 
@@ -214,3 +215,13 @@ Also closures or delegation can be used.
             end
         end
         
+        
+
+## How it can scale:
+
+<a href="http://medium.com">
+<img src="README_FILES/ModulesScaled.jpeg" alt="Open medium to read about"/>
+</a>
+
+
+**Check medium post for more information**: <a href="https://medium.com/">Medium Post </a>
