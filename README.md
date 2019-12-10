@@ -3,13 +3,12 @@
 ![Alt text](README_FILES/ModulesDependencies.png?raw=true "Modules Dependencies")
 
 # Including Authentication module
-![Alt text](README_FILES/ModulesDependenciesAuth.jpg | width=400)
-
+<img src="README_FILES/ModulesDependenciesAuth.jpg" alt="drawing" width="600"/>
 ## Video 1: Extracting Networking Service Module
 [![Play video](README_FILES/VideoPart1Preview.png)](https://www.youtube.com/embed/e2D-omTFJSA "Play video")
 
 ## Video 2: Extracting Movies Search Feature Module
-[![Play video](README_FILES/VideoPart1Preview.png)](https://www.youtube.com/embed/m1lu_23iV78 "Play video")
+[![Play video](README_FILES/VideoPart2Preview.png)](https://www.youtube.com/embed/m1lu_23iV78 "Play video")
 
 ## Requirements: 
 * **Xcode Version 11.2.1+  Swift 5.0+ CocoaPods 1.8.4+**
