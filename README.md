@@ -110,7 +110,7 @@ Also closures or delegation can be used.
 * **Step 8. After `pod install` and compiling main App we will see some errors that we have to fix: (Video 2 03:45)**
 	* Inside main app, add `import ModuleName` in all files where it is needed
     * Change to public all types or functions that needs to be accessed from outside of the module, from main app or other module
-    * Change all resources initialisers to initialise them with module's bundle: images, storyboards, nibs or CoreData models(xcdatamodeld): **(Video 2 05:15)**
+    * Change all resources initialisers to initialise them with module's bundle (e.g. images, storyboards, nibs or CoreData models xcdatamodeld): **(Video 2 05:15)**
     
         ```swift
         // Image load from bundle
