@@ -33,7 +33,7 @@ final class AppDIContainer {
         return DefaultDataTransferService(with: imagesDataNetwork)
     }()
     
-    // DIContainers of Features
+    // MARK: - DIContainers of Features
     func makeMoviesSearchDIContainer() -> MoviesSearch.DIContainer {
         let dependencies = MoviesSearch.DIContainer.Dependencies(apiDataTransferService: apiDataTransferService,
                                                                  imageDataTransferService: imageDataTransferService)
@@ -41,7 +41,7 @@ final class AppDIContainer {
     }
 }
 
-// Auth protocol conformance to Network Service
+// MARK: - Auth protocol conformance to Networking Service
 extension AuthNetworkRequest: NetworkCancellable {}
 extension AuthNetworkSessionManager: NetworkSessionManager {
     public func request(_ request: URLRequest, completion: @escaping CompletionHandler) -> NetworkCancellable {
