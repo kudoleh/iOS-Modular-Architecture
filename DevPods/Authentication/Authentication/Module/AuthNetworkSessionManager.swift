@@ -12,6 +12,7 @@ import Alamofire
 // NOTE: - We create this wrapper to not expose the use of Alomafire to others (modules and App)
 public struct AuthNetworkRequest {
     let request: DataRequest
+    
     public func cancel() {
         request.cancel()
     }
@@ -28,7 +29,8 @@ public final class AuthNetworkSessionManager {
         sessionManager.retrier = authHandler
     }
 
-    public func request(_ request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> AuthNetworkRequest {
+    public func authRequest(_ request: URLRequest,
+                            completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> AuthNetworkRequest {
 
         let request = sessionManager.request(request)
             .validate(statusCode: 200..<400)
@@ -45,7 +47,9 @@ final class AuthHandler: RequestAdapter, RequestRetrier {
         return urlRequest
     }
 
-    func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
+    func should(_ manager: SessionManager,
+                retry request: Request, with error: Error,
+                completion: @escaping RequestRetryCompletion) {
         // TODO: - refresh access token if expired using lock or access queue
     }
 }

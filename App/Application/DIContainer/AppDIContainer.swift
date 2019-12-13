@@ -41,11 +41,10 @@ final class AppDIContainer {
     }
 }
 
-// MARK: - Auth protocol conformance to Networking Service
+// MARK: - Authentication conformance to Networking Service Protocols
 extension AuthNetworkRequest: NetworkCancellable {}
 extension AuthNetworkSessionManager: NetworkSessionManager {
     public func request(_ request: URLRequest, completion: @escaping CompletionHandler) -> NetworkCancellable {
-        let request: AuthNetworkRequest = self.request(request, completion: completion)
-        return request
+        return authRequest(request, completion: completion)
     }
 }
