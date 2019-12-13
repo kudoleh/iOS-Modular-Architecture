@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import Networking
 import Authentication
-import Alamofire
 import MoviesSearch
 
 final class AppDIContainer {
@@ -42,11 +41,11 @@ final class AppDIContainer {
     }
 }
 
-// Auth protocol conformance to NetworkSessionManager
-extension DataRequest: NetworkCancellable {}
+// Auth protocol conformance to Network Service
+extension AuthNetworkRequest: NetworkCancellable {}
 extension AuthNetworkSessionManager: NetworkSessionManager {
     public func request(_ request: URLRequest, completion: @escaping CompletionHandler) -> NetworkCancellable {
-        let request: DataRequest = self.request(request, completion: completion)
+        let request: AuthNetworkRequest = self.request(request, completion: completion)
         return request
     }
 }

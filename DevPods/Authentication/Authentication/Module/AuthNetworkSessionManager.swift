@@ -9,6 +9,14 @@
 
 import Alamofire
 
+// Note: We create this wrapper to not expose the use of Alomafire to others (modules and App)
+public struct AuthNetworkRequest {
+    let request: DataRequest
+    public func cancel() {
+        request.cancel()
+    }
+}
+
 public final class AuthNetworkSessionManager {
     private let sessionManager: SessionManager
     private let authHandler = AuthHandler()
@@ -20,13 +28,14 @@ public final class AuthNetworkSessionManager {
         sessionManager.retrier = authHandler
     }
 
-    public func request(_ request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> DataRequest {
+    public func request(_ request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> AuthNetworkRequest {
 
-        return sessionManager.request(request)
+        let request = sessionManager.request(request)
             .validate(statusCode: 200..<400)
             .response { response in
                 completion(response.data, response.response, response.error)
             }
+        return AuthNetworkRequest(request: request)
     }
 }
 
