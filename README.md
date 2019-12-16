@@ -1,7 +1,7 @@
 # Modular Architecture on iOS
 
 ![Alt text](README_FILES/ModulesDependencies.png?raw=true "Modules Dependencies")
-*More information in medium post*: <a href="https://medium.com/">Medium Post </a>
+*More information in medium post*: <a href="https://tech.olx.com/modular-architecture-in-ios-c1a1e3bff8e9">Medium Post </a>
 
 # Including Authentication module
 
@@ -9,7 +9,7 @@
 <img src="README_FILES/ModulesDependenciesAuth.jpg" alt="Modules Dependencies with Authentication" width="650"/>
 </a>
 
-*More information in medium post*: <a href="https://medium.com/">Medium Post </a>
+*More information in medium post*: <a href="https://tech.olx.com/modular-architecture-in-ios-c1a1e3bff8e9">Medium Post </a>
 
 ## Video 1: Extracting Networking Service Module. <a href="#steps-to-create-module">see steps</a>
 <a href="https://www.youtube.com/embed/e2D-omTFJSA">
@@ -227,4 +227,4 @@ Also closures or delegation can be used.
 </a>
 
 
-**Check medium post for more information**: <a href="https://medium.com/">Medium Post </a>
+**Check medium post for more information**: <a href="https://tech.olx.com/modular-architecture-in-ios-c1a1e3bff8e9">Medium Post </a>
