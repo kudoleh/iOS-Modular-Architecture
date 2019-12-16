@@ -5,8 +5,6 @@
 //  Created by Oleh Kudinov on 01.10.18.
 //
 
-import Foundation
-import UIKit
 import Networking
 import Authentication
 import MoviesSearch
@@ -14,6 +12,14 @@ import MoviesSearch
 final class AppDIContainer {
     
     lazy var appConfigurations = AppConfigurations()
+    
+    
+    // MARK: - DIContainers of Features
+    func makeMoviesSearchDIContainer() -> MoviesSearch.DIContainer {
+        let dependencies = MoviesSearch.DIContainer.Dependencies(apiDataTransferService: apiDataTransferService,
+                                                                 imageDataTransferService: imageDataTransferService)
+        return DIContainer(dependencies: dependencies)
+    }
     
     // MARK: - Network
     lazy var sessionManager = AuthNetworkSessionManager()
@@ -32,13 +38,6 @@ final class AppDIContainer {
                                                       sessionManager: sessionManager)
         return DefaultDataTransferService(with: imagesDataNetwork)
     }()
-    
-    // MARK: - DIContainers of Features
-    func makeMoviesSearchDIContainer() -> MoviesSearch.DIContainer {
-        let dependencies = MoviesSearch.DIContainer.Dependencies(apiDataTransferService: apiDataTransferService,
-                                                                 imageDataTransferService: imageDataTransferService)
-        return DIContainer(dependencies: dependencies)
-    }
 }
 
 // MARK: - Authentication conformance to Networking Service Protocols
