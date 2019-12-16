@@ -13,7 +13,6 @@ final class AppDIContainer {
     
     lazy var appConfigurations = AppConfigurations()
     
-    
     // MARK: - DIContainers of Features
     func makeMoviesSearchDIContainer() -> MoviesSearch.DIContainer {
         let dependencies = MoviesSearch.DIContainer.Dependencies(apiDataTransferService: apiDataTransferService,
