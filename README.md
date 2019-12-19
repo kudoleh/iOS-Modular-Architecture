@@ -39,8 +39,10 @@
 		* `mkdir DevPods` 
 	* Create New Module inside `DevPods` folder:
 		* `cd DevPods`
-		* `pod lib create "ModuleName"`
+		* `pod lib create ModuleName`
 		* with Platform: `iOS`; Language: `Swift`; Include a Demo App: `Yes`; Test framework and view based testing we can skip
+
+		Note: To use your own pod-template you can add the parameter `--template-url=URL` where URL is the git repo containing a compatible template.
 * **Step 3. The Module's Example Demo project will be opened automatically, we need to update iOS and Swift versions: (Video 1 01:27)**
 	* Select example project and set `In Deployment Info` to `iOS 10.0` or `iOS 11.0`
 	* In Build Settings search for `Swift` and set Swift Language Version to `Swift 5`. 
