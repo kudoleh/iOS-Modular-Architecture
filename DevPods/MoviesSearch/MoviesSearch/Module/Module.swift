@@ -25,9 +25,9 @@ public struct Module {
         self.diContainer = DIContainer(dependencies: dependencies)
     }
     
-    // Note: we return UIViewController and not concrete class like MoviesListViewController
+    // Note: We return UIViewController and not concrete class like MoviesListViewController
     public func startMoviesSearch() -> UIViewController {
-        return self.diContainer.makeMoviesListViewController()
+        return diContainer.makeMoviesListViewController()
     }
 }
 
