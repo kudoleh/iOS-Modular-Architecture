@@ -8,17 +8,15 @@
 import SwiftUI
 import Networking
 
-internal struct DIContainer {
+final class DIContainer {
     
     private let dependencies: Dependencies
 
     // MARK: - Persistent Storage
-    let moviesQueriesStorage: MoviesQueriesStorage
+    lazy var moviesQueriesStorage: MoviesQueriesStorage = CoreDataStorage(maxStorageLimit: 10)
     
     public init(dependencies: Dependencies) {
         self.dependencies = dependencies
-        
-        moviesQueriesStorage = CoreDataStorage(maxStorageLimit: 10)
     }
     
     // MARK: - Use Cases
