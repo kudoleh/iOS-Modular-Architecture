@@ -7,7 +7,7 @@
 
 import Networking
 
-public struct Dependencies {
+public struct ModuleDependencies {
     let apiDataTransferService: DataTransferService
     let imageDataTransferService: DataTransferService
     
@@ -21,7 +21,7 @@ public struct Module {
     
     private let diContainer: DIContainer
     
-    public init(dependencies: Dependencies) {
+    public init(dependencies: ModuleDependencies) {
         self.diContainer = DIContainer(dependencies: dependencies)
     }
     
@@ -33,6 +33,6 @@ public struct Module {
 
 // Note: We can create MoviesSearchModuleDelegate and add it to Dependencies struct if we want to delegate Chat feature to App,
 // and avoid Chat module dependency form this module
-public protocol MoviesSearchModuleDelegate {
+public protocol ModuleDelegate: class {
     func openChatForUser(inView: UIViewController)
 }

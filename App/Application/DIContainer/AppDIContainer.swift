@@ -15,8 +15,8 @@ final class AppDIContainer {
     
     // MARK: - Modules of Features
     lazy var moviesSearchModule: MoviesSearch.Module = {
-        let dependencies = MoviesSearch.Dependencies(apiDataTransferService: apiDataTransferService,
-                                                     imageDataTransferService: imageDataTransferService)
+        let dependencies = MoviesSearch.ModuleDependencies(apiDataTransferService: apiDataTransferService,
+                                                           imageDataTransferService: imageDataTransferService)
         return MoviesSearch.Module(dependencies: dependencies)
     }()
     
