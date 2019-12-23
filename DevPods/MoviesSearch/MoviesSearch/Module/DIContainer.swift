@@ -15,7 +15,7 @@ final class DIContainer {
     // MARK: - Persistent Storage
     lazy var moviesQueriesStorage: MoviesQueriesStorage = CoreDataStorage(maxStorageLimit: 10)
     
-    public init(dependencies: Dependencies) {
+    init(dependencies: Dependencies) {
         self.dependencies = dependencies
     }
     
