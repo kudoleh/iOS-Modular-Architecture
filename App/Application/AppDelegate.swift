@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppAppearance.setupAppearance()
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let moviesListViewController = appDIContainer.makeMoviesSearchDIContainer().makeMoviesListViewController()
+        let moviesListViewController = appDIContainer.moviesSearchModule.startMoviesSearch()
         window?.rootViewController = UINavigationController(rootViewController: moviesListViewController)
         window?.makeKeyAndVisible()
 

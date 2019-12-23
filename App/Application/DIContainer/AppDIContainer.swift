@@ -13,12 +13,12 @@ final class AppDIContainer {
     
     lazy var appConfigurations = AppConfigurations()
     
-    // MARK: - DIContainers of Features
-    func makeMoviesSearchDIContainer() -> MoviesSearch.DIContainer {
-        let dependencies = MoviesSearch.DIContainer.Dependencies(apiDataTransferService: apiDataTransferService,
-                                                                 imageDataTransferService: imageDataTransferService)
-        return DIContainer(dependencies: dependencies)
-    }
+    // MARK: - Modules of Features
+    lazy var moviesSearchModule: MoviesSearch.Module = {
+        let dependencies = MoviesSearch.Dependencies(apiDataTransferService: apiDataTransferService,
+                                                     imageDataTransferService: imageDataTransferService)
+        return MoviesSearch.Module(dependencies: dependencies)
+    }()
     
     // MARK: - Network
     lazy var sessionManager = AuthNetworkSessionManager()

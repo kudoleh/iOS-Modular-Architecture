@@ -5,29 +5,20 @@
 //  Created by Oleh Kudinov on 03.03.19.
 //
 
-import UIKit
 import SwiftUI
 import Networking
 
-public final class DIContainer {
-    
-    public struct Dependencies {
-        let apiDataTransferService: DataTransferService
-        let imageDataTransferService: DataTransferService
-        
-        public init (apiDataTransferService: DataTransferService, imageDataTransferService: DataTransferService) {
-            self.apiDataTransferService = apiDataTransferService
-            self.imageDataTransferService = imageDataTransferService
-        }
-    }
+internal struct DIContainer {
     
     private let dependencies: Dependencies
 
     // MARK: - Persistent Storage
-    lazy var moviesQueriesStorage: MoviesQueriesStorage = CoreDataStorage(maxStorageLimit: 10)
+    let moviesQueriesStorage: MoviesQueriesStorage
     
     public init(dependencies: Dependencies) {
         self.dependencies = dependencies
+        
+        moviesQueriesStorage = CoreDataStorage(maxStorageLimit: 10)
     }
     
     // MARK: - Use Cases
@@ -55,7 +46,7 @@ public final class DIContainer {
     }
     
     // MARK: - Movies List
-    public func makeMoviesListViewController() -> UIViewController {
+    func makeMoviesListViewController() -> UIViewController {
         return MoviesListViewController.create(with: makeMoviesListViewModel(), moviesListViewControllersFactory: self)
     }
     
