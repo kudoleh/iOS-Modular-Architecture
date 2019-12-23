@@ -18,7 +18,7 @@ public struct ModuleDependencies {
 }
 
 public struct Module {
-    
+
     private let diContainer: DIContainer
     
     public init(dependencies: ModuleDependencies) {
