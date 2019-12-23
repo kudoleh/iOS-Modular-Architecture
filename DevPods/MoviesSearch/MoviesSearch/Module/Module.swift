@@ -32,7 +32,7 @@ public struct Module {
 }
 
 // Note: We can create ModuleDelegate and add it to ModuleDependencies struct if we want to delegate Chat feature to App,
-// and avoid dependency on Chat module from this module (same can be done by using Closures)
+// and avoid dependency on Chat module from this module (same can be done by using Closures or Routing Interfaces)
 public protocol ModuleDelegate: class {
     func openChatForUser(inView: UIViewController)
 }
