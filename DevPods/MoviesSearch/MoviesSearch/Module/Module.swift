@@ -5,7 +5,6 @@
 //  Created by Oleh Kudinov on 23.12.19.
 //
 
-import UIKit
 import Networking
 
 public struct ModuleDependencies {
