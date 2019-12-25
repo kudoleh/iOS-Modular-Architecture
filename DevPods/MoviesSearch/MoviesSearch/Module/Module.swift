@@ -32,8 +32,8 @@ public struct Module {
     }
 }
 
-// Note: We can create ModuleDelegate and add it to ModuleDependencies struct if we want to delegate Chat feature to App,
-// and avoid dependency on Chat module from this module (same can be done by using Closures or Routing Interfaces)
-public protocol ModuleDelegate: class {
+// Note: We can create ChatPresenter Interface and add it to ModuleDependencies if we want to delegate
+// Chat feature to App and avoid dependency on Chat module from this module(same can be done by using closure)
+public protocol ChatPresenter {
     func openChatForUser(inView: UIViewController)
 }
