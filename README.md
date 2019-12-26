@@ -108,7 +108,7 @@ iOS Project implemented with Modular Architecture. (Can be used as Template proj
 	            ```
 	            **Note**: if you have Core Data model with `xcdatamodel` extension you will need to convert it into `xcdatamodeld` by selecting this file and `Editor or Help -> Add Model Version..`
 	            
-	            **Note**: when you create new Group inside `Development Pods/ModuleName` with Xcode, it places its folder outside of `Module` (pod folder). And you have to fix it manually using Finder, and then run pod install
+	            **Note**: when you create new Group inside `Development Pods/ModuleName` with Xcode, it places its folder in wrong place outside of `Module` (pod folder). And it needs to be moved manually into `Module` folder using Finder, and then `pod install`
 
 * **Step 7. Add all internal or external dependencies for this module. Add them inside `ModuleName.podspec` file located inside `DevPods/ModuleName` folder: (Video 2 03:33)**
 
