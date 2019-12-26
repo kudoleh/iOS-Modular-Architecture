@@ -107,6 +107,8 @@ iOS Project implemented with Modular Architecture. (Can be used as Template proj
 	            s.resources = "MoviesSearch/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}"
 	            ```
 	            **Note**: if you have Core Data model with `xcdatamodel` extension you will need to convert it into `xcdatamodeld` by selecting this file and `Editor or Help -> Add Model Version..`
+	            
+	            **Note**: when you create new Group inside `Development Pods/ModuleName` with Xcode, it places its folder outside of `Module` (pod folder). And you have to fix it manually using Finder, and then run pod install
 
 * **Step 7. Add all internal or external dependencies for this module. Add them inside `ModuleName.podspec` file located inside `DevPods/ModuleName` folder: (Video 2 03:33)**
 
