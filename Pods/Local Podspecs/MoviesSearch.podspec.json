@@ -25,6 +25,7 @@
 
     ]
   },
+  "weak_frameworks": "SwiftUI",
   "testspecs": [
     {
       "name": "Tests",

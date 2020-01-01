@@ -29,4 +29,7 @@ TODO: Add long description of the pod here.
   
   s.dependency 'Networking'
 
+# Support versions before iOS 13 
+  s.weak_framework = 'SwiftUI'
+
 end
