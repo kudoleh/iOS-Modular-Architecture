@@ -28,7 +28,9 @@ target 'App' do
 end
 
 target 'AppUITests' do
+  use_frameworks!
   # Pods for testing
+  development_pods
 end
 
 target 'Networking_Example' do
