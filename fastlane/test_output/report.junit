@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='MoviesSearch-Unit-Tests.xctest' tests='23' failures='0'>
+  <testsuite name='AppUITests.MoviesSceneUITests' tests='1' failures='0'>
+    <testcase classname='AppUITests.MoviesSceneUITests' name='testOpenMovieDetails_whenSearchBatmanAndTapOnFirstResultRow_thenMovieDetailsViewOpensWithTitleBatman' time='13.649'/>
+  </testsuite>
+  <testsuite name='Networking_Unit_Tests.DataTransferServiceTests' tests='4' failures='0'>
+    <testcase classname='Networking_Unit_Tests.DataTransferServiceTests' name='test_whenBadRequestReceived_shouldRethrowNetworkError' time='0.015'/>
+    <testcase classname='Networking_Unit_Tests.DataTransferServiceTests' name='test_whenInvalidResponse_shouldNotDecodeObject' time='0.006'/>
+    <testcase classname='Networking_Unit_Tests.DataTransferServiceTests' name='test_whenNoDataReceived_shouldThrowNoDataError' time='0.003'/>
+    <testcase classname='Networking_Unit_Tests.DataTransferServiceTests' name='test_whenReceivedValidJsonInResponse_shouldDecodeResponseToDecodableObject' time='0.003'/>
+  </testsuite>
+  <testsuite name='Networking_Unit_Tests.NetworkServiceTests' tests='8' failures='0'>
+    <testcase classname='Networking_Unit_Tests.NetworkServiceTests' name='test_whenErrorWithNSURLErrorCancelledReturned_shouldReturnCancelledError' time='0.005'/>
+    <testcase classname='Networking_Unit_Tests.NetworkServiceTests' name='test_whenErrorWithNSURLErrorNotConnectedToInternetReturned_shouldLogThisError' time='0.003'/>
+    <testcase classname='Networking_Unit_Tests.NetworkServiceTests' name='test_whenErrorWithNSURLErrorNotConnectedToInternetReturned_shouldReturnNotConnectedError' time='0.006'/>
+    <testcase classname='Networking_Unit_Tests.NetworkServiceTests' name='test_whenhasStatusCodeUsed_shouldReturnCorrectStatusCode_' time='0.003'/>
+    <testcase classname='Networking_Unit_Tests.NetworkServiceTests' name='test_whenhasStatusCodeUsedWithWrongError_shouldReturnFalse' time='0.001'/>
+    <testcase classname='Networking_Unit_Tests.NetworkServiceTests' name='test_whenMalformedUrlPassed_shouldReturnUrlGenerationError' time='0.003'/>
+    <testcase classname='Networking_Unit_Tests.NetworkServiceTests' name='test_whenMockDataPassed_shouldReturnProperResponse' time='0.002'/>
+    <testcase classname='Networking_Unit_Tests.NetworkServiceTests' name='test_whenStatusCodeEqualOrAbove400_shouldReturnhasStatusCodeError' time='0.005'/>
+  </testsuite>
+  <testsuite name='MoviesSearch_Unit_Tests.MovieDetailsViewModelTests' tests='1' failures='0'>
+    <testcase classname='MoviesSearch_Unit_Tests.MovieDetailsViewModelTests' name='test_updatePosterImageWithWidthEventReceived_thenImageWithThisWidthIsDownloaded' time='0.004'/>
+  </testsuite>
+  <testsuite name='MoviesSearch_Unit_Tests.MoviesListViewModelTests' tests='4' failures='0'>
+    <testcase classname='MoviesSearch_Unit_Tests.MoviesListViewModelTests' name='test_whenLastPage_thenHasNoPageIsTrue' time='0.004'/>
+    <testcase classname='MoviesSearch_Unit_Tests.MoviesListViewModelTests' name='test_whenSearchMoviesUseCaseRetrievesFirstAndSecondPage_thenViewModelContainsTwoPages' time='0.002'/>
+    <testcase classname='MoviesSearch_Unit_Tests.MoviesListViewModelTests' name='test_whenSearchMoviesUseCaseRetrievesFirstPage_thenViewModelContainsOnlyFirstPage' time='0.001'/>
+    <testcase classname='MoviesSearch_Unit_Tests.MoviesListViewModelTests' name='test_whenSearchMoviesUseCaseReturnsError_thenViewModelContainsError' time='0.003'/>
+  </testsuite>
+  <testsuite name='MoviesSearch_Unit_Tests.MoviesQueriesListViewModelTests' tests='3' failures='0'>
+    <testcase classname='MoviesSearch_Unit_Tests.MoviesQueriesListViewModelTests' name='test_whenDidSelectQueryEventIsReceived_thenNotifyDelegate' time='0.002'/>
+    <testcase classname='MoviesSearch_Unit_Tests.MoviesQueriesListViewModelTests' name='test_whenFetchRecentMovieQueriesUseCaseReturnsError_thenDontShowAnyQuery' time='0.002'/>
+    <testcase classname='MoviesSearch_Unit_Tests.MoviesQueriesListViewModelTests' name='test_whenFetchRecentMovieQueriesUseCaseReturnsQueries_thenShowTheseQueries' time='0.001'/>
+  </testsuite>
+  <testsuite name='MoviesSearch_Unit_Tests.SearchMoviesUseCaseTests' tests='2' failures='0'>
+    <testcase classname='MoviesSearch_Unit_Tests.SearchMoviesUseCaseTests' name='testSearchMoviesUseCase_whenFailedFetchingMoviesForQuery_thenQueryIsNotSavedInRecentQueries' time='0.002'/>
+    <testcase classname='MoviesSearch_Unit_Tests.SearchMoviesUseCaseTests' name='testSearchMoviesUseCase_whenSuccessfullyFetchesMoviesForQuery_thenQueryIsSavedInRecentQueries' time='0.002'/>
+  </testsuite>
+</testsuites>
