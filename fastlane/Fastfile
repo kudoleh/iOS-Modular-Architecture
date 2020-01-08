@@ -17,6 +17,7 @@ desc "Runs all unit and UI tests and tests if all modules are buildable"
 desc "Use `fastlane test`"
 lane :test do |options|
 
+  # Check if all modules are buildable
   all_modules_schemes.each do |s|
     UI.message "Testing if module #{s} is buildable"
     scan(
@@ -26,6 +27,7 @@ lane :test do |options|
     )
   end
 
+  # Run all unit and UI tests, and test if App is buildable
   scan(
     scheme: "App",
     device: simulator,
