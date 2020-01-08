@@ -1,0 +1,35 @@
+# This file contains the fastlane.tools configuration
+
+default_platform(:ios)
+
+simulator = "iPhone 11 Pro Max"
+
+all_modules_schemes = [
+    'MoviesSearch-Example',
+    'Networking-Example',
+    'Authentication-Example',
+]
+
+
+#### TESTS ####
+
+desc "Runs all unit and UI tests and tests if all modules are buildable"
+desc "Use `fastlane test`"
+lane :test do |options|
+
+  all_modules_schemes.each do |s|
+    UI.message "Testing if module #{s} is buildable"
+    scan(
+      scheme: s,
+      device: simulator,
+      build_for_testing: true,
+    )
+  end
+
+  scan(
+    scheme: "App",
+    device: simulator,
+  )
+
+end
+
