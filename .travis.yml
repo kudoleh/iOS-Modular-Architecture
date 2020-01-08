@@ -1,0 +1,5 @@
+os: osx
+osx_image: xcode11.2
+language: swift
+script:
+ - fastlane scan --scheme App --device "iPhone 11 Pro Max" --verbose
