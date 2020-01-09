@@ -212,37 +212,39 @@ Also closures or delegation can be used.
 	
 # Module's Testing in CI/CD [Optional]: 
 
-* To keep always our modules buildable we need to build and run tests for each module on our Pipeline in CI. As example we can use [Fastlane](fastlane/Fastfile) and [Travis CI](.travis.yml):
-
-	```ruby
-	lane :test do |options|
+* To keep always our modules buildable we need to build and run tests for each module on our Pipeline in CI. As example we can use [Fastlane](https://docs.fastlane.tools/actions/scan/) and [Travis CI](https://travis-ci.org/):
 	
-	  # Check if all modules are buildable
-	  all_modules_schemes.each do |s|
-	    UI.message "Testing if module #{s} is buildable"
-	    scan(
-	      scheme: s,
-	      device: simulator,
-	      build_for_testing: true,
-	    )
-	  end
+	* [Fastlane script](fastlane/Fastfile)
+
+		```ruby
+		lane :test do |options|
 		
-	  # Run all unit and UI tests, and test if App is buildable
-	  scan(
-	    scheme: "App",
-	    device: simulator,
-	  )
-		
-	end
-	```
+		  # Check if all modules are buildable
+		  all_modules_schemes.each do |s|
+		    UI.message "Testing if module #{s} is buildable"
+		    scan(
+		      scheme: s,
+		      device: simulator,
+		      build_for_testing: true,
+		    )
+		  end
 			
-	  
-	```ruby
-	os: osx
-	osx_image: xcode11.2
-	language: swift
-	script:
-	- fastlane test
-	```
+		  # Run all unit and UI tests, and test if App is buildable
+		  scan(
+		    scheme: "App",
+		    device: simulator,
+		  )
+			
+		end
+		```
+	* [Travis CI script](.travis.yml)	
+		  
+		```ruby
+		os: osx
+		osx_image: xcode11.2
+		language: swift
+		script:
+		- fastlane test
+		```
 
 **Check medium post for more information**: <a href="https://tech.olx.com/modular-architecture-in-ios-c1a1e3bff8e9">Medium Post </a>
