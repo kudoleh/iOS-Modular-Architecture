@@ -214,33 +214,35 @@ Also closures or delegation can be used.
 
 * To keep always our modules buildable we need to build and run tests for each module on our Pipeline in CI. As example we can use [Fastlane](fastlane/Fastfile) and [Travis CI](.travis.yml):
 
-	Fastlane
-        lane :test do |options|
-
-		  # Check if all modules are buildable
-		  all_modules_schemes.each do |s|
-		    UI.message "Testing if module #{s} is buildable"
-		    scan(
-		      scheme: s,
-		      device: simulator,
-		      build_for_testing: true,
-		    )
-		  end
+	```ruby
+	lane :test do |options|
+	
+	  # Check if all modules are buildable
+	  all_modules_schemes.each do |s|
+	    UI.message "Testing if module #{s} is buildable"
+	    scan(
+	      scheme: s,
+	      device: simulator,
+	      build_for_testing: true,
+	    )
+	  end
 		
-		  # Run all unit and UI tests, and test if App is buildable
-		  scan(
-		    scheme: "App",
-		    device: simulator,
-		  )
+	  # Run all unit and UI tests, and test if App is buildable
+	  scan(
+	    scheme: "App",
+	    device: simulator,
+	  )
 		
-		end
-      
-          Travis
-      	  os: osx
-	  osx_image: xcode11.2
-	  language: swift
-	  script:
-		- fastlane test
-	   
+	end
+	```
+			
+	  
+	```ruby
+	os: osx
+	osx_image: xcode11.2
+	language: swift
+	script:
+	- fastlane test
+	```
 
 **Check medium post for more information**: <a href="https://tech.olx.com/modular-architecture-in-ios-c1a1e3bff8e9">Medium Post </a>
