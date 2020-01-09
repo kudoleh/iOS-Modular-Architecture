@@ -214,6 +214,7 @@ Also closures or delegation can be used.
 
 * To keep always our modules buildable we need to build and run tests for each module on our Pipeline in CI. As example we can use [Fastlane](fastlane/Fastfile) and [Travis CI](.travis.yml):
 
+	Fastlane
         lane :test do |options|
 
 		  # Check if all modules are buildable
@@ -234,8 +235,8 @@ Also closures or delegation can be used.
 		
 		end
       
-      ```
-      os: osx
+          Travis
+      	  os: osx
 	  osx_image: xcode11.2
 	  language: swift
 	  script:
