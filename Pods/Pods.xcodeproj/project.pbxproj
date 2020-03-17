@@ -615,8 +615,8 @@
 		271978BFBE030C556CB4964274C9BD2D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				41DA35C3F44CDC485B7023773505604F /* MoviesQueryListItemViewModel.swift */,
 				A90B9F04DD67933E1255FCA75597B591 /* MoviesQueryListViewModel.swift */,
+				41DA35C3F44CDC485B7023773505604F /* MoviesQueryListItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

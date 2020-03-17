@@ -45,7 +45,7 @@ final class DefaultMoviesQueryListViewModel: MoviesQueryListViewModel {
         _ = fetchRecentMovieQueriesUseCase.execute(requestValue: request) { [weak self] result in
             switch result {
             case .success(let items):
-                self?.items.value = items.map { $0.query }.map(DefaultMoviesQueryListItemViewModel.init)
+                self?.items.value = items.map { $0.query }.map(MoviesQueryListItemViewModel.init)
             case .failure: break
             }
         }
