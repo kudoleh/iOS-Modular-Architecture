@@ -7,41 +7,49 @@
 
 import UIKit
 
+protocol MoviesListViewControllersFactory {
+    func makeMoviesQueriesSuggestionsListViewController(delegate: MoviesQueryListViewModelDelegate) -> UIViewController
+    func makeMoviesDetailsViewController(movie: Movie) -> UIViewController
+}
+
 final class MoviesListViewController: UIViewController, StoryboardInstantiable, Alertable {
-    
+
     @IBOutlet private var contentView: UIView!
     @IBOutlet private var moviesListContainer: UIView!
     @IBOutlet private var suggestionsListContainer: UIView!
     @IBOutlet private var searchBarContainer: UIView!
     @IBOutlet private var loadingView: UIActivityIndicatorView!
     @IBOutlet private var emptyDataLabel: UILabel!
-    
+
     private(set) var viewModel: MoviesListViewModel!
     private var moviesListViewControllersFactory: MoviesListViewControllersFactory!
-    
+    private var posterImagesRepository: PosterImagesRepository?
+
     private var moviesQueriesSuggestionsView: UIViewController?
     private var moviesTableViewController: MoviesListTableViewController?
     private var searchController = UISearchController(searchResultsController: nil)
-    
+
     static func create(with viewModel: MoviesListViewModel,
-                            moviesListViewControllersFactory: MoviesListViewControllersFactory) -> MoviesListViewController {
+                       moviesListViewControllersFactory: MoviesListViewControllersFactory,
+                       posterImagesRepository: PosterImagesRepository?) -> MoviesListViewController {
         let view = MoviesListViewController.instantiateViewController(Bundle(for: Self.self).resource)
         view.viewModel = viewModel
         view.moviesListViewControllersFactory = moviesListViewControllersFactory
+        view.posterImagesRepository = posterImagesRepository
         return view
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = viewModel.screenTitle
         emptyDataLabel.text = viewModel.emptyDataTitle
         setupSearchController()
-        
+
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }
-    
+
     private func bind(to viewModel: MoviesListViewModel) {
         viewModel.route.observe(on: self) { [weak self] in self?.handle($0) }
         viewModel.items.observe(on: self) { [weak self] in self?.moviesTableViewController?.items = $0 }
@@ -49,22 +57,23 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
         viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
         viewModel.loadingType.observe(on: self) { [weak self] _ in self?.updateViewsVisibility() }
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         searchController.isActive = false
     }
-    
+
     private func updateSearchController(query: String) {
         searchController.isActive = false
         searchController.searchBar.text = query
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == String(describing: MoviesListTableViewController.self),
             let destinationVC = segue.destination as? MoviesListTableViewController {
             moviesTableViewController = destinationVC
             moviesTableViewController?.viewModel = viewModel
+            moviesTableViewController?.posterImagesRepository = posterImagesRepository
         }
     }
 
@@ -72,13 +81,13 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
         guard !error.isEmpty else { return }
         showAlert(title: viewModel.errorTitle, message: error)
     }
-    
+
     private func updateViewsVisibility() {
         loadingView.isHidden = true
         emptyDataLabel.isHidden = true
         moviesListContainer.isHidden = true
         suggestionsListContainer.isHidden = true
-        
+
         switch viewModel.loadingType.value {
         case .none: updateMoviesListVisibility()
         case .fullScreen: loadingView.isHidden = false
@@ -86,7 +95,7 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
         }
         updateQueriesSuggestionsVisibility()
     }
-    
+
     private func updateMoviesListVisibility() {
         guard !viewModel.isEmpty else {
             emptyDataLabel.isHidden = false
@@ -102,7 +111,7 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
         }
         viewModel.showQueriesSuggestions()
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -115,7 +124,7 @@ extension MoviesListViewController: UISearchBarDelegate {
         moviesTableViewController?.tableView.setContentOffset(CGPoint.zero, animated: false)
         viewModel.didSearch(query: searchText)
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         viewModel.didCancelSearch()
     }
@@ -125,7 +134,7 @@ extension MoviesListViewController: UISearchControllerDelegate {
     public func willPresentSearchController(_ searchController: UISearchController) {
         updateQueriesSuggestionsVisibility()
     }
-    
+
     public func willDismissSearchController(_ searchController: UISearchController) {
         updateQueriesSuggestionsVisibility()
     }
@@ -160,11 +169,8 @@ extension MoviesListViewController {
     func handle(_ route: MoviesListViewModelRoute) {
         switch route {
         case .initial: break
-        case .showMovieDetail(let title, let overview, let posterPlaceholderImage, let posterPath):
-            let vc = moviesListViewControllersFactory.makeMoviesDetailsViewController(title: title,
-                                                                                      overview: overview,
-                                                                                      posterPlaceholderImage: posterPlaceholderImage,
-                                                                                      posterPath: posterPath)
+        case .showMovieDetails(let movie):
+            let vc = moviesListViewControllersFactory.makeMoviesDetailsViewController(movie: movie)
             navigationController?.pushViewController(vc, animated: true)
         case .showMovieQueriesSuggestions(let delegate):
             guard let view = view else { return }
@@ -180,12 +186,4 @@ extension MoviesListViewController {
             suggestionsListContainer.isHidden = true
         }
     }
-}
-
-protocol MoviesListViewControllersFactory {
-    func makeMoviesQueriesSuggestionsListViewController(delegate: MoviesQueryListViewModelDelegate) -> UIViewController
-    func makeMoviesDetailsViewController(title: String,
-                                         overview: String,
-                                         posterPlaceholderImage: Data?,
-                                         posterPath: String?) -> UIViewController
 }

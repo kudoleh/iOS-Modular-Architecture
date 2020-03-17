@@ -11,29 +11,29 @@ final class UserDefaultsStorage {
     private let maxStorageLimit: Int
     private let recentsMoviesQueriesKey = "recentsMoviesQueries"
     private var userDefaults: UserDefaults { return UserDefaults.standard }
-    
+
     private var moviesQuries: [MovieQuery] {
         get {
             if let queriesData = userDefaults.object(forKey: recentsMoviesQueriesKey) as? Data {
                 let decoder = JSONDecoder()
                 if let movieQueryList = try? decoder.decode(MovieQueriesListUDS.self, from: queriesData) {
-                    return movieQueryList.list.map ( MovieQuery.init )
+                    return movieQueryList.list.map(MovieQuery.init)
                 }
             }
             return []
         }
         set {
             let encoder = JSONEncoder()
-            if let encoded = try? encoder.encode(MovieQueriesListUDS(list: newValue.map ( MovieQueryUDS.init ))) {
+            if let encoded = try? encoder.encode(MovieQueriesListUDS(list: newValue.map(MovieQueryUDS.init))) {
                 userDefaults.set(encoded, forKey: recentsMoviesQueriesKey)
             }
         }
     }
-    
+
     init(maxStorageLimit: Int) {
         self.maxStorageLimit = maxStorageLimit
     }
-    
+
     fileprivate func removeOldQueries(_ queries: [MovieQuery]) -> [MovieQuery] {
         return queries.count <= maxStorageLimit ? queries : Array(queries[0..<maxStorageLimit])
     }

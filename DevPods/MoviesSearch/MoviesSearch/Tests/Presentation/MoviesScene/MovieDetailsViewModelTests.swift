@@ -20,20 +20,18 @@ class MovieDetailsViewModelTests: XCTestCase {
         posterImagesRepository.expectation = self.expectation(description: "Image with download")
         let expectedImage = "image data".data(using: .utf8)!
         posterImagesRepository.image = expectedImage
-        let viewModel = DefaultMovieDetailsViewModel(title: "title",
-                                                     overview: "overview",
-                                                     posterPlaceholderImage: Data(),
-                                                     posterPath: "posterPath",
+
+        let viewModel = DefaultMovieDetailsViewModel(movie: Movie.stub(posterPath: "posterPath"),
                                                      posterImagesRepository: posterImagesRepository)
-        
+
         posterImagesRepository.validateInput = { (imagePath: String, width: Int) in
             XCTAssertEqual(imagePath, "posterPath")
             XCTAssertEqual(width, 200)
         }
-        
+
         // when
         viewModel.updatePosterImage(width: 200)
-        
+
         // then
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertEqual(viewModel.posterImage.value, expectedImage)
