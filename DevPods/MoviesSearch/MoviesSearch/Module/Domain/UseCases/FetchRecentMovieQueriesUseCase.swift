@@ -22,7 +22,7 @@ final class DefaultFetchRecentMovieQueriesUseCase: FetchRecentMovieQueriesUseCas
     
     func execute(requestValue: FetchRecentMovieQueriesUseCaseRequestValue,
                  completion: @escaping (Result<[MovieQuery], Error>) -> Void) -> Cancellable? {
-        moviesQueriesRepository.recentsQueries(number: requestValue.number, completion: completion)
+        moviesQueriesRepository.fetchRecentsQueries(number: requestValue.number, completion: completion)
         return nil
     }
 }
