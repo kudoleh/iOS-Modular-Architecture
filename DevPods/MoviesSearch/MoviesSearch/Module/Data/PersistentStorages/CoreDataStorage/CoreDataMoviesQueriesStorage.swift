@@ -1,5 +1,5 @@
 //
-//  CoreDataStorage.swift
+//  CoreDataMoviesQueriesStorage.swift
 //  App
 //
 //  Created by Oleh Kudinov on 16.08.19.
@@ -14,7 +14,7 @@ enum CoreDataStorageError: Error {
     case deleteError(Error)
 }
 
-final class CoreDataStorage {
+final class CoreDataMoviesQueriesStorage {
 
     private let maxStorageLimit: Int
 
@@ -50,9 +50,22 @@ final class CoreDataStorage {
             }
         }
     }
+
+    // MARK: - Private
+    private func cleanUpQueries(for query: MovieQuery, inContext context: NSManagedObjectContext) throws {
+
+        let request: NSFetchRequest<MovieQueryEntity> = MovieQueryEntity.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(MovieQueryEntity.createdAt),
+                                                    ascending: false)]
+        let resut = try context.fetch(request)
+        resut.filter { $0.query == query.query }.forEach { context.delete($0) }
+        if resut.count > maxStorageLimit - 1 {
+            Array(resut[maxStorageLimit - 1..<resut.count]).forEach { context.delete($0) }
+        }
+    }
 }
 
-extension CoreDataStorage: MoviesQueriesStorage {
+extension CoreDataMoviesQueriesStorage: MoviesQueriesStorage {
 
     func recentsQueries(number: Int, completion: @escaping (Result<[MovieQuery], Error>) -> Void) {
 
@@ -86,18 +99,6 @@ extension CoreDataStorage: MoviesQueriesStorage {
                 completion(.failure(CoreDataStorageError.writeError(error)))
                 print(error)
             }
-        }
-    }
-
-    fileprivate func cleanUpQueries(for query: MovieQuery, inContext context: NSManagedObjectContext) throws {
-
-        let request: NSFetchRequest<MovieQueryEntity> = MovieQueryEntity.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(MovieQueryEntity.createdAt),
-                                                    ascending: false)]
-        let resut = try context.fetch(request)
-        resut.filter { $0.query == query.query }.forEach { context.delete($0) }
-        if resut.count > maxStorageLimit - 1 {
-            Array(resut[maxStorageLimit - 1..<resut.count]).forEach { context.delete($0) }
         }
     }
 }
