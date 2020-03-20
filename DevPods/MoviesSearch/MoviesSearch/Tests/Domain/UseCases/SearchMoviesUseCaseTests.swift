@@ -26,7 +26,7 @@ class SearchMoviesUseCaseTests: XCTestCase {
     class MoviesQueriesRepositoryMock: MoviesQueriesRepository {
         var recentQueries: [MovieQuery] = []
         
-        func fetchRecentsQueries(number: Int, completion: @escaping (Result<[MovieQuery], Error>) -> Void) {
+        func fetchRecentsQueries(maxCount: Int, completion: @escaping (Result<[MovieQuery], Error>) -> Void) {
             completion(.success(recentQueries))
         }
         func saveRecentQuery(query: MovieQuery, completion: @escaping (Result<MovieQuery, Error>) -> Void) {
@@ -64,7 +64,7 @@ class SearchMoviesUseCaseTests: XCTestCase {
         }
         // then
         var recents = [MovieQuery]()
-        moviesQueriesRepository.fetchRecentsQueries(number: 1) { result in
+        moviesQueriesRepository.fetchRecentsQueries(maxCount: 1) { result in
             recents = (try? result.get()) ?? []
             expectation.fulfill()
         }
@@ -88,7 +88,7 @@ class SearchMoviesUseCaseTests: XCTestCase {
         }
         // then
         var recents = [MovieQuery]()
-        moviesQueriesRepository.fetchRecentsQueries(number: 1) { result in
+        moviesQueriesRepository.fetchRecentsQueries(maxCount: 1) { result in
             recents = (try? result.get()) ?? []
             expectation.fulfill()
         }
