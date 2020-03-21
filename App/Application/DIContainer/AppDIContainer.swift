@@ -16,8 +16,8 @@ final class AppDIContainer {
     // MARK: - Feature Modules
 
     func makeMoviesSearchModule() -> MoviesSearch.Module {
-        let dependencies = MoviesSearch.Module.Dependencies(apiDataTransferService: apiDataTransferService,
-                                                            imageDataTransferService: imageDataTransferService)
+        let dependencies = MoviesSearch.ModuleDependencies(apiDataTransferService: apiDataTransferService,
+                                                           imageDataTransferService: imageDataTransferService)
         return MoviesSearch.Module(dependencies: dependencies)
     }
     

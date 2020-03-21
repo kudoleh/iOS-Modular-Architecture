@@ -8,21 +8,21 @@
 import UIKit
 import Networking
 
-public struct Module {
-
-    public struct Dependencies {
-        let apiDataTransferService: DataTransferService
-        let imageDataTransferService: DataTransferService
-
-        public init (apiDataTransferService: DataTransferService, imageDataTransferService: DataTransferService) {
-            self.apiDataTransferService = apiDataTransferService
-            self.imageDataTransferService = imageDataTransferService
-        }
+public struct ModuleDependencies {
+    let apiDataTransferService: DataTransferService
+    let imageDataTransferService: DataTransferService
+    
+    public init (apiDataTransferService: DataTransferService, imageDataTransferService: DataTransferService) {
+        self.apiDataTransferService = apiDataTransferService
+        self.imageDataTransferService = imageDataTransferService
     }
+}
+
+public struct Module {
 
     private let diContainer: DIContainer
     
-    public init(dependencies: Dependencies) {
+    public init(dependencies: ModuleDependencies) {
         self.diContainer = DIContainer(dependencies: dependencies)
     }
     
