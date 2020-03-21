@@ -13,9 +13,10 @@ protocol MovieDetailsViewModelInput {
 }
 
 protocol MovieDetailsViewModelOutput {
-    var title: Observable<String> { get }
+    var title: String { get }
     var posterImage: Observable<Data?> { get }
-    var overview: Observable<String> { get }
+    var isPosterImageHidden: Bool { get }
+    var overview: String { get }
 }
 
 protocol MovieDetailsViewModel: MovieDetailsViewModelInput, MovieDetailsViewModelOutput { }
@@ -25,18 +26,19 @@ final class DefaultMovieDetailsViewModel: MovieDetailsViewModel {
     private let posterImagePath: String?
     private let posterImagesRepository: PosterImagesRepository
     private var imageLoadTask: Cancellable? { willSet { imageLoadTask?.cancel() } }
-    private var alreadyLoadedImageWidth: Int?
 
     // MARK: - OUTPUT
-    let title: Observable<String> = Observable("")
+    let title: String
     let posterImage: Observable<Data?> = Observable(nil)
-    let overview: Observable<String> = Observable("")
+    let isPosterImageHidden: Bool
+    let overview: String
 
     init(movie: Movie,
          posterImagesRepository: PosterImagesRepository) {
-        self.title.value = movie.title
-        self.overview.value = movie.overview
+        self.title = movie.title
+        self.overview = movie.overview
         self.posterImagePath = movie.posterPath
+        self.isPosterImageHidden = movie.posterPath == nil
         self.posterImagesRepository = posterImagesRepository
     }
 }
@@ -45,8 +47,7 @@ final class DefaultMovieDetailsViewModel: MovieDetailsViewModel {
 extension DefaultMovieDetailsViewModel {
 
     func updatePosterImage(width: Int) {
-        guard let posterImagePath = posterImagePath, alreadyLoadedImageWidth != width  else { return }
-        alreadyLoadedImageWidth = width
+        guard let posterImagePath = posterImagePath else { return }
 
         imageLoadTask = posterImagesRepository.fetchImage(with: posterImagePath, width: width) { [weak self] result in
             guard self?.posterImagePath == posterImagePath else { return }
