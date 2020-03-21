@@ -22,11 +22,11 @@ final class DefaultFetchRecentMovieQueriesUseCase: FetchRecentMovieQueriesUseCas
     
     func execute(requestValue: FetchRecentMovieQueriesUseCaseRequestValue,
                  completion: @escaping (Result<[MovieQuery], Error>) -> Void) -> Cancellable? {
-        moviesQueriesRepository.fetchRecentsQueries(number: requestValue.number, completion: completion)
+        moviesQueriesRepository.fetchRecentsQueries(maxCount: requestValue.maxCount, completion: completion)
         return nil
     }
 }
 
 struct FetchRecentMovieQueriesUseCaseRequestValue {
-    let number: Int
+    let maxCount: Int
 }
