@@ -86,4 +86,4 @@ final class DIContainer {
     }
 }
 
-extension DIContainer: MoviesFlowCoordinatorDependencies {}
+extension DIContainer: MoviesSearchFlowCoordinatorDependencies {}
