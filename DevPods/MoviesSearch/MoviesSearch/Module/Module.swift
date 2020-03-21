@@ -26,7 +26,6 @@ public struct Module {
         self.diContainer = DIContainer(dependencies: dependencies)
     }
     
-    // Note: We return UIViewController and not concrete class like MoviesListViewController
     public func startMoviesSearchFlow(in navigationController: UINavigationController) {
         let flow = MoviesFlowCoordinator(navigationController: navigationController,
                                          dependencies: diContainer)
