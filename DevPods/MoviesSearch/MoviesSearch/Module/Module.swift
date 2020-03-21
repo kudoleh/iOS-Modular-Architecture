@@ -27,8 +27,10 @@ public struct Module {
     }
     
     // Note: We return UIViewController and not concrete class like MoviesListViewController
-    public func startMoviesSearch() -> UIViewController {
-        return diContainer.makeMoviesListViewController()
+    public func startMoviesSearchFlow(in navigationController: UINavigationController) {
+        let flow = MoviesFlowCoordinator(navigationController: navigationController,
+                                         dependencies: diContainer)
+        flow.start()
     }
 }
 

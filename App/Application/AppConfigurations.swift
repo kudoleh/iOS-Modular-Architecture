@@ -1,5 +1,5 @@
 //
-//  AppConfigurations.swift
+//  AppConfiguration.swift
 //  App
 //
 //  Created by Oleh Kudinov on 25.02.19.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class AppConfigurations {
+final class AppConfiguration {
     lazy var apiKey: String = {
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "ApiKey") as? String else {
             fatalError("ApiKey must not be empty in plist")

@@ -45,9 +45,8 @@ final class DIContainer {
     }
     
     // MARK: - Movies List
-    func makeMoviesListViewController() -> UIViewController {
+    func makeMoviesListViewController() -> MoviesListViewController {
         return MoviesListViewController.create(with: makeMoviesListViewModel(),
-                                               moviesListViewControllersFactory: self,
                                                posterImagesRepository: makePosterImagesRepository())
     }
     
@@ -87,4 +86,4 @@ final class DIContainer {
     }
 }
 
-extension DIContainer: MoviesListViewControllersFactory {}
+extension DIContainer: MoviesFlowCoordinatorDependencies {}
