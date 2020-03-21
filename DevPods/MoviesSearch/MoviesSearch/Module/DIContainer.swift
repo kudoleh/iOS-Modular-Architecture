@@ -11,12 +11,12 @@ import Networking
 
 final class DIContainer {
     
-    private let dependencies: ModuleDependencies
+    private let dependencies: Module.Dependencies
 
     // MARK: - Persistent Storage
     lazy var moviesQueriesStorage: MoviesQueriesStorage = CoreDataMoviesQueriesStorage(maxStorageLimit: 10)
     
-    init(dependencies: ModuleDependencies) {
+    init(dependencies: Module.Dependencies) {
         self.dependencies = dependencies
     }
     
