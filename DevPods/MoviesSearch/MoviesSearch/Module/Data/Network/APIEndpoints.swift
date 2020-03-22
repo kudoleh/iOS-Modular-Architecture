@@ -10,7 +10,7 @@ import Networking
 
 struct APIEndpoints {
 
-    static func getMovies(moviesRequestDTO: MoviesRequestDTO) -> Endpoint<MoviesResponseDTO> {
+    static func getMovies(with moviesRequestDTO: MoviesRequestDTO) -> Endpoint<MoviesResponseDTO> {
 
         return Endpoint(path: "3/search/movie/",
                         method: .get,
