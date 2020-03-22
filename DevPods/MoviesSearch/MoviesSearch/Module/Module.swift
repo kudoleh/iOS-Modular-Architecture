@@ -27,8 +27,7 @@ public struct Module {
     }
     
     public func startMoviesSearchFlow(in navigationController: UINavigationController) {
-        let flow = MoviesSearchFlowCoordinator(navigationController: navigationController,
-                                               dependencies: diContainer)
+        let flow = diContainer.makeMoviesSearchFlowCoordinator(navigationController: navigationController)
         flow.start()
     }
 }

@@ -84,6 +84,12 @@ final class DIContainer {
     func makeMoviesQueryListViewModelWrapper(delegate: MoviesQueryListViewModelDelegate) -> MoviesQueryListViewModelWrapper {
         return MoviesQueryListViewModelWrapper(viewModel: makeMoviesQueryListViewModel(delegate: delegate))
     }
+
+    // MARK: - Flow Coordinators
+    func makeMoviesSearchFlowCoordinator(navigationController: UINavigationController) -> MoviesSearchFlowCoordinator {
+        return MoviesSearchFlowCoordinator(navigationController: navigationController,
+                                           dependencies: self)
+    }
 }
 
 extension DIContainer: MoviesSearchFlowCoordinatorDependencies {}
