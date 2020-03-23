@@ -20,15 +20,6 @@ class MoviesQueriesListViewModelTests: XCTestCase {
                         MovieQuery(query: "query4"),
                         MovieQuery(query: "query5")]
     
-    class MoviesQueryListViewModelDelegateMock: MoviesQueryListViewModelDelegate {
-        var expectation: XCTestExpectation?
-        var didNotifiedWithMovieQuery: MovieQuery?
-        func moviesQueriesListDidSelect(movieQuery: MovieQuery) {
-            didNotifiedWithMovieQuery = movieQuery
-            expectation?.fulfill()
-        }
-    }
-    
     class FetchRecentMovieQueriesUseCaseMock: FetchRecentMovieQueriesUseCase {
         var expectation: XCTestExpectation?
         var error: Error?
@@ -80,18 +71,22 @@ class MoviesQueriesListViewModelTests: XCTestCase {
     func test_whenDidSelectQueryEventIsReceived_thenNotifyDelegate() {
         // given
         let selectedQueryItem = MovieQuery(query: "query1")
-        let delegate = MoviesQueryListViewModelDelegateMock()
-        delegate.expectation = self.expectation(description: "Delegate notified")
-        
+        var actionMovieQuery: MovieQuery?
+        let expectation = self.expectation(description: "Delegate notified")
+        let closures = MoviesQueryListViewModelClosures(selectMovieQuery: { movieQuery in
+            actionMovieQuery = movieQuery
+            expectation.fulfill()
+        })
+
         let viewModel = DefaultMoviesQueryListViewModel(numberOfQueriesToShow: 3,
                                                         fetchRecentMovieQueriesUseCase: FetchRecentMovieQueriesUseCaseMock(),
-                                                        delegate: delegate)
+                                                        closures: closures)
         
         // when
         viewModel.didSelect(item: MoviesQueryListItemViewModel(query: selectedQueryItem.query))
         
         // then
         waitForExpectations(timeout: 5, handler: nil)
-        XCTAssertEqual(delegate.didNotifiedWithMovieQuery, selectedQueryItem)
+        XCTAssertEqual(actionMovieQuery, selectedQueryItem)
     }
 }

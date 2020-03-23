@@ -7,15 +7,13 @@
 
 import Foundation
 
-enum MoviesListViewModelRoute {
-    case initial
-    case showMovieDetails(movie: Movie)
-    case showMovieQueriesSuggestions(delegate: MoviesQueryListViewModelDelegate)
-    case closeMovieQueriesSuggestions
+struct MoviesListViewModelClosures {
+    let showMovieDetails: (Movie) -> Void
+    let showMovieQueriesSuggestions: (@escaping (_ didSelect: MovieQuery) -> Void) -> Void
+    let closeMovieQueriesSuggestions: () -> Void
 }
 
 enum MoviesListViewModelLoading {
-    case none
     case fullScreen
     case nextPage
 }
@@ -31,9 +29,8 @@ protocol MoviesListViewModelInput {
 }
 
 protocol MoviesListViewModelOutput {
-    var route: Observable<MoviesListViewModelRoute> { get }
     var items: Observable<[MoviesListItemViewModel]> { get }
-    var loadingType: Observable<MoviesListViewModelLoading> { get }
+    var loadingType: Observable<MoviesListViewModelLoading?> { get }
     var query: Observable<String> { get }
     var error: Observable<String> { get }
     var isEmpty: Bool { get }
@@ -48,6 +45,7 @@ protocol MoviesListViewModel: MoviesListViewModelInput, MoviesListViewModelOutpu
 final class DefaultMoviesListViewModel: MoviesListViewModel {
 
     private let searchMoviesUseCase: SearchMoviesUseCase
+    private let closures: MoviesListViewModelClosures?
 
     private(set) var currentPage: Int = 0
     private var totalPageCount: Int = 1
@@ -62,9 +60,8 @@ final class DefaultMoviesListViewModel: MoviesListViewModel {
     private var moviesLoadTask: Cancellable? { willSet { moviesLoadTask?.cancel() } }
 
     // MARK: - OUTPUT
-    let route: Observable<MoviesListViewModelRoute> = Observable(.initial)
     let items: Observable<[MoviesListItemViewModel]> = Observable([])
-    let loadingType: Observable<MoviesListViewModelLoading> = Observable(.none)
+    let loadingType: Observable<MoviesListViewModelLoading?> = Observable(.none)
     let query: Observable<String> = Observable("")
     let error: Observable<String> = Observable("")
     var isEmpty: Bool { return items.value.isEmpty }
@@ -73,9 +70,10 @@ final class DefaultMoviesListViewModel: MoviesListViewModel {
     let errorTitle = NSLocalizedString("Error", comment: "")
     let searchBarPlaceholder = NSLocalizedString("Search Movies", comment: "")
 
-    @discardableResult
-    init(searchMoviesUseCase: SearchMoviesUseCase) {
+    init(searchMoviesUseCase: SearchMoviesUseCase,
+         closures: MoviesListViewModelClosures? = nil) {
         self.searchMoviesUseCase = searchMoviesUseCase
+        self.closures = closures
     }
 
     private func appendPage(moviesPage: MoviesPage) {
@@ -142,21 +140,16 @@ extension DefaultMoviesListViewModel {
     }
 
     func showQueriesSuggestions() {
-        route.value = .showMovieQueriesSuggestions(delegate: self)
+        closures?.showMovieQueriesSuggestions { [weak self] query in
+            self?.update(movieQuery: query)
+        }
     }
 
     func closeQueriesSuggestions() {
-        route.value = .closeMovieQueriesSuggestions
+        closures?.closeMovieQueriesSuggestions()
     }
 
     func didSelect(at indexPath: IndexPath) {
-        route.value = .showMovieDetails(movie: movies[indexPath.row])
-    }
-}
-
-// MARK: - Delegate method from another model views
-extension DefaultMoviesListViewModel: MoviesQueryListViewModelDelegate {
-    func moviesQueriesListDidSelect(movieQuery: MovieQuery) {
-        update(movieQuery: movieQuery)
+        closures?.showMovieDetails(movies[indexPath.row])
     }
 }
