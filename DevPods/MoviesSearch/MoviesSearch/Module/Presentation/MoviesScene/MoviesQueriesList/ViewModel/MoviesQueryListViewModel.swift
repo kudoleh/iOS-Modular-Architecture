@@ -8,7 +8,7 @@
 import Foundation
 
 struct MoviesQueryListViewModelClosures {
-    var selectMovieQuery: (MovieQuery) -> Void
+    var didSelect: (MovieQuery) -> Void
 }
 
 protocol MoviesQueryListViewModelInput {
@@ -59,6 +59,6 @@ extension DefaultMoviesQueryListViewModel {
     }
     
     func didSelect(item: MoviesQueryListItemViewModel) {
-        closures?.selectMovieQuery(MovieQuery(query: item.query))
+        closures?.didSelect(MovieQuery(query: item.query))
     }
 }
