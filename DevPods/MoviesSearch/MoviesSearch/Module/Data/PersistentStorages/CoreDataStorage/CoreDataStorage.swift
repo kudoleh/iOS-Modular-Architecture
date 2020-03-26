@@ -11,7 +11,7 @@ final class CoreDataStorage {
 
     static let shared = CoreDataStorage()
 
-        // MARK: - Core Data stack
+    // MARK: - Core Data stack
     private lazy var persistentContainer: NSPersistentContainer = {
         guard let modelURL = Bundle(for: Self.self).resource.url(forResource: "CoreDataStorage", withExtension: "momd"),
             let mom = NSManagedObjectModel(contentsOf: modelURL)
@@ -26,19 +26,6 @@ final class CoreDataStorage {
         }
         return container
     }()
-
-    // MARK: - Core Data Saving support
-    func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
 
     func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
         persistentContainer.performBackgroundTask(block)
