@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-enum CoreDataStorageError: Error {
+enum CoreDataMoviesQueriesStorageError: Error {
     case readError(Error)
     case writeError(Error)
     case deleteError(Error)
@@ -17,38 +17,11 @@ enum CoreDataStorageError: Error {
 final class CoreDataMoviesQueriesStorage {
 
     private let maxStorageLimit: Int
+    private let coreDataStorage: CoreDataStorage
 
-    init(maxStorageLimit: Int) {
+    init(maxStorageLimit: Int, coreDataStorage: CoreDataStorage = CoreDataStorage.shared) {
         self.maxStorageLimit = maxStorageLimit
-    }
-
-    // MARK: - Core Data stack
-    private lazy var persistentContainer: NSPersistentContainer = {
-        guard let modelURL = Bundle(for: Self.self).resource.url(forResource: "CoreDataStorage", withExtension: "momd"),
-            let mom = NSManagedObjectModel(contentsOf: modelURL)
-            else {
-                fatalError("Unable to located Core Data model")
-        }
-        let container = NSPersistentContainer(name: "Name", managedObjectModel: mom)
-        container.loadPersistentStores { _, error in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        }
-        return container
-    }()
-
-    // MARK: - Core Data Saving support
-    private func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
+        self.coreDataStorage = coreDataStorage
     }
 
     // MARK: - Private
@@ -69,7 +42,7 @@ extension CoreDataMoviesQueriesStorage: MoviesQueriesStorage {
 
     func fetchRecentsQueries(maxCount: Int, completion: @escaping (Result<[MovieQuery], Error>) -> Void) {
 
-        persistentContainer.performBackgroundTask { context in
+        coreDataStorage.performBackgroundTask { context in
             do {
                 let request: NSFetchRequest<MovieQueryEntity> = MovieQueryEntity.fetchRequest()
                 request.sortDescriptors = [NSSortDescriptor(key: #keyPath(MovieQueryEntity.createdAt),
@@ -79,7 +52,7 @@ extension CoreDataMoviesQueriesStorage: MoviesQueriesStorage {
 
                 completion(.success(resut))
             } catch {
-                completion(.failure(CoreDataStorageError.readError(error)))
+                completion(.failure(CoreDataMoviesQueriesStorageError.readError(error)))
                 print(error)
             }
         }
@@ -87,7 +60,7 @@ extension CoreDataMoviesQueriesStorage: MoviesQueriesStorage {
 
     func saveRecentQuery(query: MovieQuery, completion: @escaping (Result<MovieQuery, Error>) -> Void) {
 
-        persistentContainer.performBackgroundTask { [weak self] context in
+        coreDataStorage.performBackgroundTask { [weak self] context in
             guard let self = self else { return }
             do {
                 try self.cleanUpQueries(for: query, inContext: context)
@@ -96,7 +69,7 @@ extension CoreDataMoviesQueriesStorage: MoviesQueriesStorage {
 
                 completion(.success(MovieQuery(movieQueryEntity: entity)))
             } catch {
-                completion(.failure(CoreDataStorageError.writeError(error)))
+                completion(.failure(CoreDataMoviesQueriesStorageError.writeError(error)))
                 print(error)
             }
         }
