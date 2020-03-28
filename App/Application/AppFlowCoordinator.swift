@@ -18,7 +18,7 @@ class AppFlowCoordinator {
         self.appDIContainer = appDIContainer
     }
     
-    func startMoviesSearchFlow() {
+    func start() {
         let moviesSearchModule = appDIContainer.makeMoviesSearchModule()
         moviesSearchModule.startMoviesSearchFlow(in: navigationController)
     }
