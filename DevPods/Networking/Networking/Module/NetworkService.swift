@@ -125,14 +125,13 @@ public final class DefaultNetworkErrorLogger: NetworkErrorLogger {
     public init() { }
 
     public func log(request: URLRequest) {
-        print("-------------")
-        print("request: \(request.url!)")
-        print("headers: \(request.allHTTPHeaderFields!)")
-        print("method: \(request.httpMethod!)")
+        debugPrint("-------------")
+        debugPrint("request: \(request.url!)")
+        debugPrint("headers: \(request.allHTTPHeaderFields!)")
+        debugPrint("method: \(request.httpMethod!)")
         if let httpBody = request.httpBody, let result = ((try? JSONSerialization.jsonObject(with: httpBody, options: []) as? [String: AnyObject]) as [String: AnyObject]??) {
             debugPrint("body: \(String(describing: result))")
-        }
-        if let httpBody = request.httpBody, let resultString = String(data: httpBody, encoding: .utf8) {
+        } else if let httpBody = request.httpBody, let resultString = String(data: httpBody, encoding: .utf8) {
             debugPrint("body: \(String(describing: resultString))")
         }
     }
