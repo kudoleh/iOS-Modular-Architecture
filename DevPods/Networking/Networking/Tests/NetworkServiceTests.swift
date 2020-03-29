@@ -11,12 +11,14 @@ import XCTest
 class NetworkServiceTests: XCTestCase {
     
     private struct EndpointMock: Requestable {
+
         var path: String
         var isFullPath: Bool = false
         var method: HTTPMethodType
+        var headerParamaters: [String: String] = [:]
         var queryParametersEncodable: Encodable?
         var queryParameters: [String: Any] = [:]
-        var headerParamaters: [String: String] = [:]
+        var bodyParamatersEncodable: Encodable?
         var bodyParamaters: [String: Any] = [:]
         var bodyEncoding: BodyEncoding = .stringEncodingAscii
         

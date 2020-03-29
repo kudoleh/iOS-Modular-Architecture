@@ -146,12 +146,6 @@ public final class DefaultNetworkErrorLogger: NetworkErrorLogger {
     public func log(error: Error) {
         printIfDebug("\(error)")
     }
-
-    func printIfDebug(_ string: String) {
-        #if DEBUG
-        print(string)
-        #endif
-    }
 }
 
 // MARK: - NetworkError extension
@@ -166,4 +160,10 @@ extension NetworkError {
         default: return false
         }
     }
+}
+
+func printIfDebug(_ string: String) {
+    #if DEBUG
+    print(string)
+    #endif
 }
