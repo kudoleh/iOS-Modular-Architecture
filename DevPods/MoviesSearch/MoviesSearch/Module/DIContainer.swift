@@ -59,7 +59,7 @@ final class DIContainer {
     func makeMoviesDetailsViewController(movie: Movie) -> UIViewController {
         return MovieDetailsViewController.create(with: makeMoviesDetailsViewModel(movie: movie))
     }
-    
+
     func makeMoviesDetailsViewModel(movie: Movie) -> MovieDetailsViewModel {
         return DefaultMovieDetailsViewModel(movie: movie,
                                             posterImagesRepository: makePosterImagesRepository())

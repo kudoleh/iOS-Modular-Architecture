@@ -36,6 +36,7 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
         title = viewModel.screenTitle
         emptyDataLabel.text = viewModel.emptyDataTitle
         setupSearchController()
+        addBehaviors([BackButtonEmptyTitleNavigationBarBehavior()])
 
         bind(to: viewModel)
         viewModel.viewDidLoad()
