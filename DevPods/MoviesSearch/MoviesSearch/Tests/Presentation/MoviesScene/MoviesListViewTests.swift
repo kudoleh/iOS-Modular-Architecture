@@ -30,10 +30,12 @@ class MoviesListViewTests: FBSnapshotTestCase {
 
     func test_whenViewIsEmpty_thenShowEmptyScreen() {
         // given
-        let vc = MoviesListViewController.create(with: MoviesListViewModelMock.stub(isEmpty: true,
-                                                                                    emptyDataTitle: NSLocalizedString("Search results", comment: ""),
-                                                                                    searchBarPlaceholder: NSLocalizedString("Search Movies", comment: "")),
-                                                 posterImagesRepository: PosterImagesRepositoryMock())
+        let vc = MoviesListViewController.create(
+            with: MoviesListViewModelMock.stub(isEmpty: true,
+                                               emptyDataTitle: NSLocalizedString("Search results", comment: ""),
+                                               searchBarPlaceholder: NSLocalizedString("Search Movies", comment: "")
+            ),
+            posterImagesRepository: PosterImagesRepositoryMock())
 
         // then
         FBSnapshotVerifyView(vc.view)
@@ -42,11 +44,13 @@ class MoviesListViewTests: FBSnapshotTestCase {
     func test_whenHasItems_thenShowItemsOnScreen() {
         // given
         let pages = moviesPages.map(MoviesListPageViewModel.init)
-        let vc = MoviesListViewController.create(with: MoviesListViewModelMock.stub(pageViewModels: Observable(pages),
-                                                                                    isEmpty: false,
-                                                                                    emptyDataTitle: NSLocalizedString("Search results", comment: ""),
-                                                                                    searchBarPlaceholder: NSLocalizedString("Search Movies", comment: "")),
-                                                 posterImagesRepository: PosterImagesRepositoryMock())
+        let vc = MoviesListViewController.create(
+            with: MoviesListViewModelMock.stub(pageViewModels: Observable(pages),
+                                               isEmpty: false,
+                                               emptyDataTitle: NSLocalizedString("Search results", comment: ""),
+                                               searchBarPlaceholder: NSLocalizedString("Search Movies", comment: "")
+            ),
+            posterImagesRepository: PosterImagesRepositoryMock())
 
         // then
         FBSnapshotVerifyView(vc.view)

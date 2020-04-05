@@ -1941,10 +1941,10 @@
 		EADE163CA520E1BDC0F9156ABB81F645 /* MoviesScene */ = {
 			isa = PBXGroup;
 			children = (
-				E061C8351784817742E62F4E56D2A478 /* MovieDetailsViewModelTests.swift */,
 				805E7201917D5980D8D1C6D4912B2440 /* MoviesListViewModelSpec.swift */,
-				C458753DF40C49BF2359682B0674226A /* MoviesQueriesListViewModelTests.swift */,
 				1FFF13E5243A72D400937EE4 /* MoviesListViewTests.swift */,
+				E061C8351784817742E62F4E56D2A478 /* MovieDetailsViewModelTests.swift */,
+				C458753DF40C49BF2359682B0674226A /* MoviesQueriesListViewModelTests.swift */,
 				D998452867CC7497909CA22E02C1A22F /* Mocks */,
 			);
 			path = MoviesScene;
