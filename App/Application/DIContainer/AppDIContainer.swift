@@ -14,7 +14,6 @@ final class AppDIContainer {
     lazy var appConfiguration = AppConfiguration()
     
     // MARK: - Feature Modules
-
     func makeMoviesSearchModule() -> MoviesSearch.Module {
         let dependencies = MoviesSearch.ModuleDependencies(apiDataTransferService: apiDataTransferService,
                                                            imageDataTransferService: imageDataTransferService)
