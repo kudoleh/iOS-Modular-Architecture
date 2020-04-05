@@ -1,6 +1,6 @@
 //
 //  MoviesQueriesStorage.swift
-//  App
+//  ExampleMVVM
 //
 //  Created by Oleh Kudinov on 16.08.19.
 //

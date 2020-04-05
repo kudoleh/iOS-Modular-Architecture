@@ -9,7 +9,7 @@ import XCTest
 @testable import MoviesSearch
 
 class SearchMoviesUseCaseTests: XCTestCase {
-    
+
     static let moviesPages: [MoviesPage] = {
         let page1 = MoviesPage(page: 1, totalPages: 2, movies: [
             Movie.stub(id: "1", title: "title1", posterPath: "/1", overview: "overview1"),
@@ -18,14 +18,14 @@ class SearchMoviesUseCaseTests: XCTestCase {
             Movie.stub(id: "3", title: "title3", posterPath: "/3", overview: "overview3")])
         return [page1, page2]
     }()
-    
+
     enum MoviesRepositorySuccessTestError: Error {
         case failedFetching
     }
-    
+
     class MoviesQueriesRepositoryMock: MoviesQueriesRepository {
         var recentQueries: [MovieQuery] = []
-        
+
         func fetchRecentsQueries(maxCount: Int, completion: @escaping (Result<[MovieQuery], Error>) -> Void) {
             completion(.success(recentQueries))
         }
@@ -33,33 +33,27 @@ class SearchMoviesUseCaseTests: XCTestCase {
             recentQueries.append(query)
         }
     }
-    
-    class MoviesRepositorySuccessMock: MoviesRepository {
-        func fetchMoviesList(query: MovieQuery, page: Int, completion: @escaping (Result<MoviesPage, Error>) -> Void) -> Cancellable? {
-            completion(.success(SearchMoviesUseCaseTests.moviesPages[0]))
+
+    struct MoviesRepositoryMock: MoviesRepository {
+        var result: Result<MoviesPage, Error>
+        func fetchMoviesList(query: MovieQuery, page: Int, cached: @escaping (MoviesPage?) -> Void, completion: @escaping (Result<MoviesPage, Error>) -> Void) -> Cancellable? {
+            completion(result)
             return nil
         }
     }
-    
-    class MoviesRepositoryFailureMock: MoviesRepository {
-        func fetchMoviesList(query: MovieQuery, page: Int, completion: @escaping (Result<MoviesPage, Error>) -> Void) -> Cancellable? {
-            completion(.failure(MoviesRepositorySuccessTestError.failedFetching))
-            return nil
-        }
-    }
-    
+
     func testSearchMoviesUseCase_whenSuccessfullyFetchesMoviesForQuery_thenQueryIsSavedInRecentQueries() {
         // given
         let expectation = self.expectation(description: "Recent query saved")
         expectation.expectedFulfillmentCount = 2
         let moviesQueriesRepository = MoviesQueriesRepositoryMock()
-        let useCase = DefaultSearchMoviesUseCase(moviesRepository: MoviesRepositorySuccessMock(),
-                                                  moviesQueriesRepository: moviesQueriesRepository)
+        let useCase = DefaultSearchMoviesUseCase(moviesRepository: MoviesRepositoryMock(result: .success(SearchMoviesUseCaseTests.moviesPages[0])),
+                                                 moviesQueriesRepository: moviesQueriesRepository)
 
         // when
         let requestValue = SearchMoviesUseCaseRequestValue(query: MovieQuery(query: "title1"),
-                                                                                     page: 0)
-        _ = useCase.execute(requestValue: requestValue) { _ in
+                                                           page: 0)
+        _ = useCase.execute(requestValue: requestValue, cached: { _ in }) { _ in
             expectation.fulfill()
         }
         // then
@@ -71,19 +65,19 @@ class SearchMoviesUseCaseTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertTrue(recents.contains(MovieQuery(query: "title1")))
     }
-    
+
     func testSearchMoviesUseCase_whenFailedFetchingMoviesForQuery_thenQueryIsNotSavedInRecentQueries() {
         // given
         let expectation = self.expectation(description: "Recent query should not be saved")
         expectation.expectedFulfillmentCount = 2
         let moviesQueriesRepository = MoviesQueriesRepositoryMock()
-        let useCase = DefaultSearchMoviesUseCase(moviesRepository: MoviesRepositoryFailureMock(),
-                                                moviesQueriesRepository: moviesQueriesRepository)
-        
+        let useCase = DefaultSearchMoviesUseCase(moviesRepository: MoviesRepositoryMock(result: .failure(MoviesRepositorySuccessTestError.failedFetching)),
+                                                 moviesQueriesRepository: moviesQueriesRepository)
+
         // when
         let requestValue = SearchMoviesUseCaseRequestValue(query: MovieQuery(query: "title1"),
-                                                          page: 0)
-        _ = useCase.execute(requestValue: requestValue) { _ in
+                                                           page: 0)
+        _ = useCase.execute(requestValue: requestValue, cached: { _ in }) { _ in
             expectation.fulfill()
         }
         // then

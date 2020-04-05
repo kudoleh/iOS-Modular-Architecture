@@ -1,6 +1,6 @@
 //
 //  UserDefaultsMoviesQueriesStorage.swift
-//  App
+//  ExampleMVVM
 //
 //  Created by Oleh on 03.10.18.
 //
@@ -11,7 +11,7 @@ final class UserDefaultsMoviesQueriesStorage {
     private let maxStorageLimit: Int
     private let recentsMoviesQueriesKey = "recentsMoviesQueries"
     private var userDefaults: UserDefaults
-
+    
     init(maxStorageLimit: Int, userDefaults: UserDefaults = UserDefaults.standard) {
         self.maxStorageLimit = maxStorageLimit
         self.userDefaults = userDefaults
@@ -19,9 +19,8 @@ final class UserDefaultsMoviesQueriesStorage {
 
     private func fetchMoviesQuries() -> [MovieQuery] {
         if let queriesData = userDefaults.object(forKey: recentsMoviesQueriesKey) as? Data {
-            let decoder = JSONDecoder()
-            if let movieQueryList = try? decoder.decode(MovieQueriesListUDS.self, from: queriesData) {
-                return movieQueryList.list.map(MovieQuery.init)
+            if let movieQueryList = try? JSONDecoder().decode(MovieQueriesListUDS.self, from: queriesData) {
+                return movieQueryList.list.map { $0.mapToDomain() }
             }
         }
         return []

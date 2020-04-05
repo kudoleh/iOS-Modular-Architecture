@@ -1,6 +1,6 @@
 //
 //  RepositoryTask.swift
-//  App
+//  ExampleMVVM
 //
 //  Created by Oleh Kudinov on 25.10.19.
 //
@@ -8,9 +8,12 @@
 import Foundation
 import Networking
 
-struct RepositoryTask: Cancellable {
-    let networkTask: NetworkCancellable?
+class RepositoryTask: Cancellable {
+    var networkTask: NetworkCancellable?
+    var isCancelled: Bool = false
+    
     func cancel() {
         networkTask?.cancel()
+        isCancelled = true
     }
 }
