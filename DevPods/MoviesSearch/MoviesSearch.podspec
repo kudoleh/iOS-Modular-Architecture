@@ -28,6 +28,7 @@ TODO: Add long description of the pod here.
 
     test_spec.dependency 'Quick'
     test_spec.dependency 'Nimble'
+    test_spec.dependency 'iOSSnapshotTestCase'
   end
   
   s.dependency 'Networking'

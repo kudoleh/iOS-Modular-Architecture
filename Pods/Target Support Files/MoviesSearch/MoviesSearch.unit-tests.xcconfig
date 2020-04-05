@@ -1,7 +1,7 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$(PLATFORM_DIR)/Developer/Library/Frameworks" "${PODS_CONFIGURATION_BUILD_DIR}/MoviesSearch" "${PODS_CONFIGURATION_BUILD_DIR}/Networking" "${PODS_CONFIGURATION_BUILD_DIR}/Nimble" "${PODS_CONFIGURATION_BUILD_DIR}/Quick"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$(PLATFORM_DIR)/Developer/Library/Frameworks" "${PODS_CONFIGURATION_BUILD_DIR}/MoviesSearch" "${PODS_CONFIGURATION_BUILD_DIR}/Networking" "${PODS_CONFIGURATION_BUILD_DIR}/Nimble" "${PODS_CONFIGURATION_BUILD_DIR}/Quick" "${PODS_CONFIGURATION_BUILD_DIR}/iOSSnapshotTestCase"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_LDFLAGS = $(inherited) -ObjC -framework "MoviesSearch" -framework "Networking" -framework "Nimble" -framework "Quick" -framework "XCTest" -weak_framework "SwiftUI" -weak_framework "XCTest"
+OTHER_LDFLAGS = $(inherited) -ObjC -framework "FBSnapshotTestCase" -framework "Foundation" -framework "MoviesSearch" -framework "Networking" -framework "Nimble" -framework "QuartzCore" -framework "Quick" -framework "UIKit" -framework "XCTest" -weak_framework "SwiftUI" -weak_framework "XCTest"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

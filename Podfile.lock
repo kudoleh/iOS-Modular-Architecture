@@ -2,9 +2,15 @@ PODS:
   - Alamofire (4.9.1)
   - Authentication (0.1.0):
     - Alamofire (= 4.9.1)
+  - iOSSnapshotTestCase (6.2.0):
+    - iOSSnapshotTestCase/SwiftSupport (= 6.2.0)
+  - iOSSnapshotTestCase/Core (6.2.0)
+  - iOSSnapshotTestCase/SwiftSupport (6.2.0):
+    - iOSSnapshotTestCase/Core
   - MoviesSearch (0.1.0):
     - Networking
   - MoviesSearch/Tests (0.1.0):
+    - iOSSnapshotTestCase
     - Networking
     - Nimble
     - Quick
@@ -23,6 +29,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - iOSSnapshotTestCase
     - Nimble
     - Quick
 
@@ -37,7 +44,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Authentication: 82974da7cf060751f6c7c3c70f947eae900fccdb
-  MoviesSearch: d3af4497b8b6b380956d456a614bfa36bc254b9c
+  iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
+  MoviesSearch: 4592bc2925792b3f00037d50f252d67c646e827f
   Networking: 35b2d4f60e37e0d94f14e6bc5c12fdd842bfe110
   Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
