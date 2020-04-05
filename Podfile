@@ -29,6 +29,7 @@ end
 
 target 'AppUITests' do
   use_frameworks!
+  
   # Pods for testing
   development_pods
 end

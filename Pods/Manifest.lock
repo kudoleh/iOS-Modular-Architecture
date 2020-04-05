@@ -6,8 +6,12 @@ PODS:
     - Networking
   - MoviesSearch/Tests (0.1.0):
     - Networking
+    - Nimble
+    - Quick
   - Networking (0.1.0)
   - Networking/Tests (0.1.0)
+  - Nimble (8.0.5)
+  - Quick (2.2.0)
 
 DEPENDENCIES:
   - Authentication (from `DevPods/Authentication`)
@@ -19,6 +23,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Nimble
+    - Quick
 
 EXTERNAL SOURCES:
   Authentication:
@@ -31,9 +37,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Authentication: 82974da7cf060751f6c7c3c70f947eae900fccdb
-  MoviesSearch: c7d925495bd8e2ff97c23d1d347cce9ea2bf5311
+  MoviesSearch: d3af4497b8b6b380956d456a614bfa36bc254b9c
   Networking: 35b2d4f60e37e0d94f14e6bc5c12fdd842bfe110
+  Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
+  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
 
-PODFILE CHECKSUM: 937e9dc328e46c24829a2d556d23128886a6f740
+PODFILE CHECKSUM: a7f76a5e0238d79eb7532cc2ce97e9ac58e58f70
 
 COCOAPODS: 1.8.4
