@@ -11,11 +11,11 @@ import Networking
 final class DefaultMoviesRepository {
     
     private let dataTransferService: DataTransferService
-    private let moviesResponseCache: MoviesResponseStorage
+    private let cache: MoviesResponseStorage
     
-    init(dataTransferService: DataTransferService, moviesResponseCache: MoviesResponseStorage) {
+    init(dataTransferService: DataTransferService, cache: MoviesResponseStorage) {
         self.dataTransferService = dataTransferService
-        self.moviesResponseCache = moviesResponseCache
+        self.cache = cache
     }
 }
 
@@ -28,8 +28,8 @@ extension DefaultMoviesRepository: MoviesRepository {
         let requestDTO = MoviesRequestDTO(query: query.query, page: page)
         let task = RepositoryTask()
         
-        moviesResponseCache.fetchMoviesResponse(for: requestDTO) { result in
-            if case let .success(cachedResponse) = result, let moviesResponseDTO = cachedResponse {
+        cache.getResponse(for: requestDTO) { result in
+            if case let .success(moviesResponseDTO?) = result {
                 cached(moviesResponseDTO.mapToDomain())
             }
             guard !task.isCancelled else { return }
@@ -38,7 +38,7 @@ extension DefaultMoviesRepository: MoviesRepository {
             task.networkTask = self.dataTransferService.request(with: endpoint) { (response: Result<MoviesResponseDTO, Error>) in
                 switch response {
                 case .success(let moviesResponseDTO):
-                    self.moviesResponseCache.saveMoviesResponse(moviesResponseDTO, for: requestDTO)
+                    self.cache.save(response: moviesResponseDTO, for: requestDTO)
                     completion(.success(moviesResponseDTO.mapToDomain()))
                 case .failure(let error):
                     completion(.failure(error))
