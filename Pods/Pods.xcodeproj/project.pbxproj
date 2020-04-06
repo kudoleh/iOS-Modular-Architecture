@@ -46,7 +46,6 @@
 		1CA8D388330BCF7A5DE8DB3E5BDEFF07 /* UIViewController+AddChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5525D880BDFE42AFF690DA3957EB69 /* UIViewController+AddChild.swift */; };
 		1EF03FCC178921A38E1258CA67F1E1FB /* DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5C21EC06FF09C509088834D6076BF5 /* DSL.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		1FFF13E7243A735900937EE4 /* MoviesListViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFF13E5243A72D400937EE4 /* MoviesListViewTests.swift */; };
-		1FFF1AD3243B8F0600937EE4 /* EquatableClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFF1AD2243B8F0600937EE4 /* EquatableClosure.swift */; };
 		206D158067115BB5A7687C95D95616BA /* NMBExceptionCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5516BE513CED18204165702CF99090 /* NMBExceptionCapture.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		21EEA592F592E2651FE9256E9DADB537 /* Bundle+Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D27EAD6BA98ED7BC9CD6F5F89AB76F /* Bundle+Resource.swift */; };
 		269BFC9DCDE13B5583AA6FD88BD1CFFB /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 84BD29AF39CD1EDD8A4A96A214071436 /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -446,7 +445,6 @@
 		1E5E95B000A2A2856841FA872B41C9D6 /* XCTestObservationCenter+Register.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCTestObservationCenter+Register.m"; path = "Sources/NimbleObjectiveC/XCTestObservationCenter+Register.m"; sourceTree = "<group>"; };
 		1E9E32104939B8F38F0CD2435747324C /* Pods-Networking_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Networking_Example-dummy.m"; sourceTree = "<group>"; };
 		1FFF13E5243A72D400937EE4 /* MoviesListViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewTests.swift; sourceTree = "<group>"; };
-		1FFF1AD2243B8F0600937EE4 /* EquatableClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquatableClosure.swift; sourceTree = "<group>"; };
 		21C1AA8D8352C5D0652D829AD4B42B31 /* Pods-Networking_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Networking_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		21E22A2B9E8118824043BB1E0C205536 /* Authentication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Authentication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		234BA51ACF9D465F4B774CB5C6FED808 /* QuickConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QuickConfiguration.h; path = Sources/QuickObjectiveC/Configuration/QuickConfiguration.h; sourceTree = "<group>"; };
@@ -1896,7 +1894,6 @@
 			isa = PBXGroup;
 			children = (
 				1C054987A40B5711C5042E7106D63FA2 /* AccessibilityIdentifier.swift */,
-				1FFF1AD2243B8F0600937EE4 /* EquatableClosure.swift */,
 				421E9FFF6399629D6E45DEF129F4FF01 /* LiteralBundleImage.swift */,
 				23E6DF3E88F0CAC1F7A09B7D93296419 /* LoadingView.swift */,
 				A06407BBD42A572821F9AB70B1747C29 /* Observable.swift */,
@@ -2790,7 +2787,6 @@
 			files = (
 				145957E2A90FE47A941CA17E85193C21 /* AccessibilityIdentifier.swift in Sources */,
 				B68B4DFBAC92B0944AEAA35AFF8F16F9 /* Alertable.swift in Sources */,
-				1FFF1AD3243B8F0600937EE4 /* EquatableClosure.swift in Sources */,
 				A361C0004B241FBE8069FA126015A36D /* APIEndpoints.swift in Sources */,
 				83B1A1B3C40711992E0ED6B5614361F2 /* BackButtonEmptyTitleNavigationBarBehavior.swift in Sources */,
 				21EEA592F592E2651FE9256E9DADB537 /* Bundle+Resource.swift in Sources */,
