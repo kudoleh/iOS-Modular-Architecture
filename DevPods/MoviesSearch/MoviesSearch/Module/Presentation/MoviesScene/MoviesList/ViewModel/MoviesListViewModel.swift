@@ -52,6 +52,7 @@ final class DefaultMoviesListViewModel: MoviesListViewModel {
     var hasMorePages: Bool { currentPage < totalPageCount }
     var nextPage: Int { hasMorePages ? currentPage + 1 : currentPage }
 
+    private var pages: [[MoviesListItemViewModel]] = []
     private var moviesLoadTask: Cancellable? { willSet { moviesLoadTask?.cancel() } }
 
     // MARK: - OUTPUT
@@ -71,21 +72,20 @@ final class DefaultMoviesListViewModel: MoviesListViewModel {
         self.closures = closures
     }
 
-    private func insertPage(_ moviesPage: MoviesPage) {
+    private func appendPage(_ moviesPage: MoviesPage) {
         currentPage = moviesPage.page
         totalPageCount = moviesPage.totalPages
 
-        var items = self.items.value
-        items.removeAll { $0.page == moviesPage.page }
-        items.insert(contentsOf: moviesPage.movies.map { .init(movie: $0, page: moviesPage.page) },
-                     at: moviesPage.page - 1)
+        if moviesPage.page == pages.count { pages.removeLast() }
+        pages.append(moviesPage.movies.map(MoviesListItemViewModel.init))
 
-        self.items.value = items
+        self.items.value = pages.flatMap { $0 }
     }
 
     private func resetPages() {
         currentPage = 0
         totalPageCount = 1
+        pages.removeAll()
         items.value.removeAll()
     }
 
@@ -95,13 +95,13 @@ final class DefaultMoviesListViewModel: MoviesListViewModel {
 
         moviesLoadTask = searchMoviesUseCase.execute(
             requestValue: .init(query: movieQuery, page: nextPage),
-            cached: { moviesPage in
-                self.insertPage(moviesPage)
-            },
+            cached: { page in
+                self.appendPage(page)
+        },
             completion: { result in
                 switch result {
-                case .success(let moviesPage):
-                    self.insertPage(moviesPage)
+                case .success(let page):
+                    self.appendPage(page)
                 case .failure(let error):
                     self.handle(error: error)
                 }

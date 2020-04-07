@@ -40,7 +40,7 @@ class MoviesListViewTests: FBSnapshotTestCase {
 
     func test_whenHasItems_thenShowItemsOnScreen() {
         // given
-        let items = movies.map { MoviesListItemViewModel.init(movie: $0, page: 0) }
+        let items = movies.map(MoviesListItemViewModel.init)
         let vc = MoviesListViewController.create(
             with: MoviesListViewModelMock.stub(items: Observable(items),
                                                isEmpty: false,
