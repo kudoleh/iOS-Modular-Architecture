@@ -22,9 +22,8 @@ final class DefaultFetchRecentMovieQueriesUseCase: FetchRecentMovieQueriesUseCas
     
     func execute(requestValue: FetchRecentMovieQueriesUseCaseRequestValue,
                  completion: @escaping (Result<[MovieQuery], Error>) -> Void) -> Cancellable? {
-        moviesQueriesRepository.fetchRecentsQueries(maxCount: requestValue.maxCount) { result in
-            DispatchQueue.main.async { completion(result) }
-        }
+
+        moviesQueriesRepository.fetchRecentsQueries(maxCount: requestValue.maxCount, completion: completion)
         return nil
     }
 }

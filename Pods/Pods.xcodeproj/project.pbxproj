@@ -1812,8 +1812,8 @@
 		CCA3B016D7A1131B84C561F2C9DC507D /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				44458D85B274D389C539073F5CADACBE /* FetchRecentMovieQueriesUseCase.swift */,
 				4D7E452AD4551F4D311600889F011092 /* SearchMoviesUseCase.swift */,
+				44458D85B274D389C539073F5CADACBE /* FetchRecentMovieQueriesUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
