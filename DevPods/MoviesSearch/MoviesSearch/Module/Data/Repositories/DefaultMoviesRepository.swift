@@ -20,14 +20,14 @@ final class DefaultMoviesRepository {
 }
 
 extension DefaultMoviesRepository: MoviesRepository {
-    
+
     public func fetchMoviesList(query: MovieQuery, page: Int,
                                 cached: @escaping (MoviesPage) -> Void,
                                 completion: @escaping (Result<MoviesPage, Error>) -> Void) -> Cancellable? {
 
         let requestDTO = MoviesRequestDTO(query: query.query, page: page)
         let task = RepositoryTask()
-        
+
         cache.getResponse(for: requestDTO) { result in
 
             if case let .success(responseDTO?) = result {
@@ -37,7 +37,13 @@ extension DefaultMoviesRepository: MoviesRepository {
 
             let endpoint = APIEndpoints.getMovies(with: requestDTO)
             task.networkTask = self.dataTransferService.request(with: endpoint) { result in
-                completion(result.map { $0.mapToDomain() })
+                switch result {
+                case .success(let responseDTO):
+                    self.cache.save(response: responseDTO, for: requestDTO)
+                    completion(.success(responseDTO.mapToDomain()))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
         return task
