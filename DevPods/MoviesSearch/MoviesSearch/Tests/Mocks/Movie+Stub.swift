@@ -9,7 +9,7 @@ import Foundation
 @testable import MoviesSearch
 
 extension Movie {
-    static func stub(id: MovieId = "id1",
+    static func stub(id: Movie.Identifier = "id1",
                 title: String = "title1" ,
                 posterPath: String? = "/1",
                 overview: String = "overview1",
