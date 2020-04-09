@@ -63,7 +63,7 @@ struct MoviesListViewModelMock: MoviesListViewModel {
     func didCancelSearch() {}
     func showQueriesSuggestions() {}
     func closeQueriesSuggestions() {}
-    func didSelect(item: MoviesListItemViewModel) {}
+    func didSelectItem(at index: Int) {}
 
     // MARK: - Output
     var items: Observable<[MoviesListItemViewModel]>
