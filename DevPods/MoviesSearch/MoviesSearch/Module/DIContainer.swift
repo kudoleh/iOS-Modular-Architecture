@@ -14,7 +14,7 @@ final class DIContainer {
     private let dependencies: ModuleDependencies
 
     // MARK: - Persistent Storage
-    lazy var moviesQueriesStorage: MoviesQueriesStorage = CoreDataMoviesQueriesStorage(maxStorageLimit: 10)
+    lazy var moviesQueriesStorage: MoviesQueriesStorage = CoreDataMoviesQueriesStorage(maxStorageLimit: 5)
     lazy var moviesResponseCache: MoviesResponseStorage = CoreDataMoviesResponseStorage()
     
     init(dependencies: ModuleDependencies) {
