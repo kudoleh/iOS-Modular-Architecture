@@ -42,7 +42,7 @@ final class DIContainer {
     func makePosterImagesRepository() -> PosterImagesRepository {
         
         return DefaultPosterImagesRepository(dataTransferService: dependencies.imageDataTransferService,
-                                             imageNotFoundData: (#imageLiteral(resourceName: "image_not_found") as LiteralBundleImage).image?.pngData())
+                                             imageNotFound: (#imageLiteral(resourceName: "image_not_found") as LiteralBundleImage).image?.pngData())
     }
     
     // MARK: - Movies List
