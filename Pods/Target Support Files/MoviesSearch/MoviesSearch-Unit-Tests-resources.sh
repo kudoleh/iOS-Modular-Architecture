@@ -99,7 +99,6 @@ EOM
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/../DevPods/MoviesSearch/MoviesSearch/Module/Assets/Assets.xcassets/AppIcon.appiconset/Contents.json"
   install_resource "${PODS_ROOT}/../DevPods/MoviesSearch/MoviesSearch/Module/Assets/Assets.xcassets/Contents.json"
-  install_resource "${PODS_ROOT}/../DevPods/MoviesSearch/MoviesSearch/Module/Assets/Assets.xcassets/image_not_found.imageset/Contents.json"
   install_resource "${PODS_ROOT}/../DevPods/MoviesSearch/MoviesSearch/Module/Presentation/MoviesScene/MovieDetails/View/MovieDetailsViewController.storyboard"
   install_resource "${PODS_ROOT}/../DevPods/MoviesSearch/MoviesSearch/Module/Presentation/MoviesScene/MoviesList/View/MoviesListViewController.storyboard"
   install_resource "${PODS_ROOT}/../DevPods/MoviesSearch/MoviesSearch/Module/Presentation/MoviesScene/MoviesQueriesList/View/UIKit/MoviesQueriesTableViewController.storyboard"
@@ -109,7 +108,6 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/../DevPods/MoviesSearch/MoviesSearch/Module/Assets/Assets.xcassets/AppIcon.appiconset/Contents.json"
   install_resource "${PODS_ROOT}/../DevPods/MoviesSearch/MoviesSearch/Module/Assets/Assets.xcassets/Contents.json"
-  install_resource "${PODS_ROOT}/../DevPods/MoviesSearch/MoviesSearch/Module/Assets/Assets.xcassets/image_not_found.imageset/Contents.json"
   install_resource "${PODS_ROOT}/../DevPods/MoviesSearch/MoviesSearch/Module/Presentation/MoviesScene/MovieDetails/View/MovieDetailsViewController.storyboard"
   install_resource "${PODS_ROOT}/../DevPods/MoviesSearch/MoviesSearch/Module/Presentation/MoviesScene/MoviesList/View/MoviesListViewController.storyboard"
   install_resource "${PODS_ROOT}/../DevPods/MoviesSearch/MoviesSearch/Module/Presentation/MoviesScene/MoviesQueriesList/View/UIKit/MoviesQueriesTableViewController.storyboard"
