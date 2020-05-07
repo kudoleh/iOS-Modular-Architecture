@@ -1,4 +1,5 @@
-# Modular Architecture on iOS [![CI](https://img.shields.io/travis/kudoleh/iOS-Modular-Architecture)](https://travis-ci.com/github/kudoleh/iOS-Modular-Architecture)
+# Modular Architecture on iOS
+ ![Swift 5](https://img.shields.io/badge/compatible-swift%205.0%20-orange.svg) [![CI](https://img.shields.io/travis/kudoleh/iOS-Modular-Architecture)](https://travis-ci.com/github/kudoleh/iOS-Modular-Architecture)
 
 iOS Project implemented with Modular Architecture. (Can be used as Template project by replacing item name “Movie”). **More information in medium post**: <a href="https://tech.olx.com/modular-architecture-in-ios-c1a1e3bff8e9">Medium Post about Modular Architecture</a>
 
