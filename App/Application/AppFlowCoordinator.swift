@@ -19,6 +19,7 @@ class AppFlowCoordinator {
     }
     
     func start() {
+        // In App Flow we can check if user needs to login, if yes we would run login flow
         let moviesSearchModule = appDIContainer.makeMoviesSearchModule()
         moviesSearchModule.startMoviesSearchFlow(in: navigationController)
     }
