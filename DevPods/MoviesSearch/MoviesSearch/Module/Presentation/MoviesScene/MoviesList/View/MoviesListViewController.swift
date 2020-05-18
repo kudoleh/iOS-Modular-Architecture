@@ -21,6 +21,8 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
     private var moviesTableViewController: MoviesListTableViewController?
     private var searchController = UISearchController(searchResultsController: nil)
 
+     // MARK: - Lifecicle
+
     static func create(with viewModel: MoviesListViewModel,
                        posterImagesRepository: PosterImagesRepository?) -> MoviesListViewController {
         let view = MoviesListViewController.instantiateViewController(Bundle(for: Self.self).resource)
@@ -67,6 +69,8 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
         }
     }
 
+     // MARK: - Private
+
     private func showError(_ error: String) {
         guard !error.isEmpty else { return }
         showAlert(title: viewModel.errorTitle, message: error)
@@ -101,7 +105,9 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
         }
         viewModel.showQueriesSuggestions()
     }
+}
 
+extension MoviesListViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
