@@ -2,7 +2,7 @@
 
 default_platform(:ios)
 
-simulator = "iPhone 11 Pro Max"
+simulator = "iPhone 8 Plus"
 
 all_modules_schemes = [
     'MoviesSearch-Example',
