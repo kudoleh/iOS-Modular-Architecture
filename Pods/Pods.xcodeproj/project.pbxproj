@@ -33,6 +33,7 @@
 		1986B50C74F1697EA43F68335C93CEB3 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D88A98036C6E8B53ED1E987BC301B88 /* MultipartFormData.swift */; };
 		1C3B7ADA88441C190DBB44ACDD500BC6 /* Authentication-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 12F71AEDD43E6E295574628B5A65345E /* Authentication-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F2EED6E04B4AD23DE3BDB3900E81CDE /* Networking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A4A5B42AABE6A67442CA76045B7E07 /* Networking-dummy.m */; };
+		1F79491F247D85D000552CC3 /* BlackStyleNavigationBarBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F79491D247D85CC00552CC3 /* BlackStyleNavigationBarBehavior.swift */; };
 		1FDF4FBBA6420F540C6BB8B1EE4A102B /* MoviesSearch-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 86DD99F644E46B79029B142C199825FC /* MoviesSearch-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2005BA6E5122B8338D871725BD97BF50 /* BeIdenticalTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A5E180149E6A104CCA334D7711D239 /* BeIdenticalTo.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		23EA99F73705814A572CB03B89C3C9E8 /* DefaultMoviesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9A75CA6F2543E24DE39917D08D23F /* DefaultMoviesRepository.swift */; };
@@ -446,6 +447,7 @@
 		1E42B52C9F5F0E4AF33896E722CF2D60 /* AuthNetworkSessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthNetworkSessionManager.swift; path = Authentication/Module/AuthNetworkSessionManager.swift; sourceTree = "<group>"; };
 		1E5E95B000A2A2856841FA872B41C9D6 /* XCTestObservationCenter+Register.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCTestObservationCenter+Register.m"; path = "Sources/NimbleObjectiveC/XCTestObservationCenter+Register.m"; sourceTree = "<group>"; };
 		1E9E32104939B8F38F0CD2435747324C /* Pods-Networking_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Networking_Example-dummy.m"; sourceTree = "<group>"; };
+		1F79491D247D85CC00552CC3 /* BlackStyleNavigationBarBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackStyleNavigationBarBehavior.swift; sourceTree = "<group>"; };
 		21C1AA8D8352C5D0652D829AD4B42B31 /* Pods-Networking_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Networking_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		21E22A2B9E8118824043BB1E0C205536 /* Authentication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Authentication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		234BA51ACF9D465F4B774CB5C6FED808 /* QuickConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QuickConfiguration.h; path = Sources/QuickObjectiveC/Configuration/QuickConfiguration.h; sourceTree = "<group>"; };
@@ -922,6 +924,7 @@
 			isa = PBXGroup;
 			children = (
 				4E3CB75148EDF966F5258FE562F368EB /* BackButtonEmptyTitleNavigationBarBehavior.swift */,
+				1F79491D247D85CC00552CC3 /* BlackStyleNavigationBarBehavior.swift */,
 			);
 			path = Behaviors;
 			sourceTree = "<group>";
@@ -2682,6 +2685,7 @@
 				2E5FBE2A1B66DA8D775B124A7762CEA0 /* DIContainer.swift in Sources */,
 				9D385CD50253E5326990D31E360CEA62 /* FetchRecentMovieQueriesUseCase.swift in Sources */,
 				FBCDFC172B0C3FBF110B5E622453DEED /* LiteralBundleImage.swift in Sources */,
+				1F79491F247D85D000552CC3 /* BlackStyleNavigationBarBehavior.swift in Sources */,
 				73ABF24498B50A7E3D5F033139973EFE /* LoadingView.swift in Sources */,
 				77CDFF96282526500BF098B05486DFB0 /* Module.swift in Sources */,
 				FCB64E55BA5F813E6962930A1DCBB016 /* Movie.swift in Sources */,
