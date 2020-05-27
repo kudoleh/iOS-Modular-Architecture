@@ -11,6 +11,6 @@ struct BackButtonEmptyTitleNavigationBarBehavior: ViewControllerLifecycleBehavio
 
     func viewDidLoad(viewController: UIViewController) {
 
-        viewController.navigationController?.navigationBar.barStyle = .black
+        viewController.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }
