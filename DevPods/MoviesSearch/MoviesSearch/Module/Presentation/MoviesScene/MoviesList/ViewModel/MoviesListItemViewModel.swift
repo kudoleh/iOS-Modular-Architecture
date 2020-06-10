@@ -5,9 +5,9 @@
 //  Created by Oleh Kudinov on 18.02.19.
 //
 
-import Foundation
+// **Note**: This view model is to display data and does not contain any domain model to prevent views accessing it
 
-// Note: This view model is to display data and does not contain any domain model to prevent views accessing it
+import Foundation
 
 struct MoviesListItemViewModel: Equatable {
     let title: String
