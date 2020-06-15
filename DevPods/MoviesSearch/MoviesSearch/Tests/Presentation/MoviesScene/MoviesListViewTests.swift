@@ -17,9 +17,6 @@ class MoviesListViewTests: FBSnapshotTestCase {
             Movie.stub(id: "3", title: "title3", posterPath: "/3", overview: "overview3")
     ]
 
-    var window: UIWindow!
-    var nvc: UINavigationController!
-
     override func setUp() {
         super.setUp()
         //self.recordMode = true
