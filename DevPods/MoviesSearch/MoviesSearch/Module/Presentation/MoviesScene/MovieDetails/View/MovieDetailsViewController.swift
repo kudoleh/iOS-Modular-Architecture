@@ -15,7 +15,7 @@ final class MovieDetailsViewController: UIViewController, StoryboardInstantiable
     
     private var viewModel: MovieDetailsViewModel!
 
-    // MARK: - Lifecicle
+    // MARK: - Lifecycle
 
     static func create(with viewModel: MovieDetailsViewModel) -> MovieDetailsViewController {
         let view = MovieDetailsViewController.instantiateViewController(Bundle(for: Self.self).resource)
