@@ -64,7 +64,7 @@ struct MoviesListViewModelMock: MoviesListViewModel {
 
     // MARK: - Output
     var items: Observable<[MoviesListItemViewModel]>
-    var loadingType: Observable<MoviesListViewModelLoading?>
+    var loading: Observable<MoviesListViewModelLoading?>
     var query: Observable<String>
     var error: Observable<String>
     var isEmpty: Bool
@@ -74,7 +74,7 @@ struct MoviesListViewModelMock: MoviesListViewModel {
     var searchBarPlaceholder: String
 
     static func stub(items: Observable<[MoviesListItemViewModel]> = Observable([]),
-                     loadingType: Observable<MoviesListViewModelLoading?> = Observable(nil),
+                     loading: Observable<MoviesListViewModelLoading?> = Observable(nil),
                      query: Observable<String> = Observable(""),
                      error: Observable<String> = Observable(""),
                      isEmpty: Bool = true,
@@ -83,7 +83,7 @@ struct MoviesListViewModelMock: MoviesListViewModel {
                      errorTitle: String = NSLocalizedString("Error", comment: ""),
                      searchBarPlaceholder: String = NSLocalizedString("Search Movies", comment: "")) -> Self {
         .init(items: items,
-              loadingType: loadingType,
+              loading: loading,
               query: query,
               error: error,
               isEmpty: isEmpty,
