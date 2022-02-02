@@ -19,7 +19,7 @@ class MoviesListViewTests: FBSnapshotTestCase {
 
     override func setUp() {
         super.setUp()
-        self.recordMode = true
+        //self.recordMode = true
     }
 
     func test_whenViewIsEmpty_thenShowEmptyScreen() {
