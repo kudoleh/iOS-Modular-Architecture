@@ -2,10 +2,10 @@ PODS:
   - Alamofire (4.9.1)
   - Authentication (0.1.0):
     - Alamofire (= 4.9.1)
-  - iOSSnapshotTestCase (6.2.0):
-    - iOSSnapshotTestCase/SwiftSupport (= 6.2.0)
-  - iOSSnapshotTestCase/Core (6.2.0)
-  - iOSSnapshotTestCase/SwiftSupport (6.2.0):
+  - iOSSnapshotTestCase (8.0.0):
+    - iOSSnapshotTestCase/SwiftSupport (= 8.0.0)
+  - iOSSnapshotTestCase/Core (8.0.0)
+  - iOSSnapshotTestCase/SwiftSupport (8.0.0):
     - iOSSnapshotTestCase/Core
   - MoviesSearch (0.1.0):
     - Networking
@@ -16,8 +16,8 @@ PODS:
     - Quick
   - Networking (0.1.0)
   - Networking/Tests (0.1.0)
-  - Nimble (8.0.5)
-  - Quick (2.2.0)
+  - Nimble (9.2.1)
+  - Quick (4.0.0)
 
 DEPENDENCIES:
   - Authentication (from `DevPods/Authentication`)
@@ -44,11 +44,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Authentication: 82974da7cf060751f6c7c3c70f947eae900fccdb
-  iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
+  iOSSnapshotTestCase: a670511f9ee3829c2b9c23e6e68f315fd7b6790f
   MoviesSearch: 4592bc2925792b3f00037d50f252d67c646e827f
   Networking: 35b2d4f60e37e0d94f14e6bc5c12fdd842bfe110
-  Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
-  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
+  Nimble: e7e615c0335ee4bf5b0d786685451e62746117d5
+  Quick: 6473349e43b9271a8d43839d9ba1c442ed1b7ac4
 
 PODFILE CHECKSUM: a7f76a5e0238d79eb7532cc2ce97e9ac58e58f70
 

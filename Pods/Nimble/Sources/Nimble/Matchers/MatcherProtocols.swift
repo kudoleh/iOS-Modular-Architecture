@@ -12,6 +12,7 @@ public protocol Matcher {
     func doesNotMatch(_ actualExpression: Expression<ValueType>, failureMessage: FailureMessage) throws -> Bool
 }
 
+@available(*, deprecated)
 extension Matcher {
     var predicate: Predicate<ValueType> {
         return Predicate.fromDeprecatedMatcher(self)
@@ -44,7 +45,7 @@ public protocol NMBContainer {
 #if canImport(Darwin)
 // swiftlint:disable:next todo
 // FIXME: NSHashTable can not conform to NMBContainer since swift-DEVELOPMENT-SNAPSHOT-2016-04-25-a
-//extension NSHashTable : NMBContainer {} // Corelibs Foundation does not include this class yet
+// extension NSHashTable : NMBContainer {} // Corelibs Foundation does not include this class yet
 #endif
 
 extension NSArray: NMBContainer {}
@@ -128,22 +129,15 @@ extension NSDate: TestOutputStringConvertible {
     }
 }
 
+#if canImport(Darwin)
 /// Protocol for types to support beLessThan(), beLessThanOrEqualTo(),
 ///  beGreaterThan(), beGreaterThanOrEqualTo(), and equal() matchers.
 ///
 /// Types that conform to Swift's Comparable protocol will work implicitly too
-#if canImport(Darwin)
 @objc public protocol NMBComparable {
     func NMB_compare(_ otherObject: NMBComparable!) -> ComparisonResult
 }
-#elseif !compiler(>=5.1)
-// This should become obsolete once Corelibs Foundation adds Comparable conformance to NSNumber
-public protocol NMBComparable {
-    func NMB_compare(_ otherObject: NMBComparable!) -> ComparisonResult
-}
-#endif
 
-#if canImport(Darwin) || !compiler(>=5.1)
 extension NSNumber: NMBComparable {
     public func NMB_compare(_ otherObject: NMBComparable!) -> ComparisonResult {
         // swiftlint:disable:next force_cast
