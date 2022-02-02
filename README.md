@@ -40,7 +40,7 @@ iOS Project implemented with Modular Architecture. (Can be used as Template proj
 	* Open Terminal and change directory `cd` to folder with your project App.xcodeproj file, and execute following commands:
 		* `pod init` 
     	* inside Podfile 
-    		* uncomment `platform :ios, '9.0'`,  and change `'9.0'` to `10.0` or `11.0`
+    		* uncomment `platform :ios, '9.0'`,  and change `'9.0'` to `14.0` or `15.0`
     		* add line: `workspace 'AppName.xcworkspace'`
     		* add line: `project 'AppName.xcodeproj'`
     	* `pod install` 
@@ -54,7 +54,7 @@ iOS Project implemented with Modular Architecture. (Can be used as Template proj
 
 		Note: To use your own pod-template you can add the parameter `--template-url=URL` where URL is the git repo containing a compatible template.
 * **Step 3. The Module's Example Demo project will be opened automatically, we need to update iOS and Swift versions: (Video 1 01:27)**
-	* Select example project and set `In Deployment Info` to `iOS 10.0` or `iOS 11.0`
+	* Select example project and set `In Deployment Info` to `iOS 14.0` or `iOS 15.0`
 	* In Build Settings search for `Swift` and set Swift Language Version to `Swift 5`. 
 	* Remove Test Target and Test folder inside the project
 	* Close this demo example project (otherwise you will not be able to open it from App.xcworkspace)
@@ -98,7 +98,7 @@ iOS Project implemented with Modular Architecture. (Can be used as Template proj
 	* Inside `DevPods/ModuleName/ModuleName` folder remove `Assets` and `Classes` folders and create folder with name `Module`. 
 	* Move from main App to the `Module` folder all module's files (e.g. .swift, .xcassets, .storyboard, .xcdatamodeld...). After moving them from main App do not forget to delete them also from main App's target. For moving files is better to not use Xcode, and do it manually or with terminal.
         * Edit ModuleName.podspec:
-			* Set ios deployment target: `s.ios.deployment_target = '10.0'` or `11.0`
+			* Set ios deployment target: `s.ios.deployment_target = '14.0'` or `15.0`
 
             * Replace `s.source_files = ...`  to: **(Video 1 03:53)**
 
