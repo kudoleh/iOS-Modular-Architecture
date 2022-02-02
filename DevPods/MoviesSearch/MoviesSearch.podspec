@@ -12,7 +12,7 @@ TODO: Add long description of the pod here.
   s.author           = { 'olehkudinovolx' => 'oleh.kudinov@olx.com' }
   s.source           = { :git => 'https://github.com/olehkudinovolx/MoviesSearch.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '12.4'
   
   s.source_files = 'MoviesSearch/Module/**/*.{swift}'
 

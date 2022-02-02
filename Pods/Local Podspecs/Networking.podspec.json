@@ -16,7 +16,7 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "10.0"
+    "ios": "12.4"
   },
   "source_files": "Networking/Module/**/*.{swift}",
   "resources": "Networking/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}",

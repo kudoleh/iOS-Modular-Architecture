@@ -1,4 +1,4 @@
-platform :ios, '10.0'
+platform :ios, '12.4'
 
 workspace 'App.xcworkspace'
 project 'App.xcodeproj'
