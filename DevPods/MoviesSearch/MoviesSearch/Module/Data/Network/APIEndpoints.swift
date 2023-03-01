@@ -12,7 +12,7 @@ struct APIEndpoints {
     
     static func getMovies(with moviesRequestDTO: MoviesRequestDTO) -> Endpoint<MoviesResponseDTO> {
 
-        return Endpoint(path: "3/search/movie/",
+        return Endpoint(path: "3/search/movie",
                         method: .get,
                         queryParametersEncodable: moviesRequestDTO)
     }
