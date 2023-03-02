@@ -33,7 +33,7 @@ extension DefaultMoviesRepository: MoviesRepository {
         cache.getResponse(for: requestDTO) { result in
 
             if case let .success(responseDTO?) = result {
-                cached(responseDTO.toDomain())
+                DispatchQueue.main.async { cached(responseDTO.toDomain()) }
             }
             guard !task.isCancelled else { return }
 
