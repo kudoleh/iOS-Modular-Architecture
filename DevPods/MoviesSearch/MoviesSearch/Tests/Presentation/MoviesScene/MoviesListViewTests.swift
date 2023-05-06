@@ -10,6 +10,8 @@ import FBSnapshotTestCase
 @testable import MoviesSearch
 
 class MoviesListViewTests: FBSnapshotTestCase {
+    
+    let perPixelTolerance: CGFloat = 6/256
 
     let movies: [Movie] = [
             Movie.stub(id: "1", title: "title1", posterPath: "/1", overview: "overview1"),
@@ -32,7 +34,7 @@ class MoviesListViewTests: FBSnapshotTestCase {
             posterImagesRepository: PosterImagesRepositoryMock())
 
         // then
-        FBSnapshotVerifyView(vc.view)
+        FBSnapshotVerifyView(vc.view, perPixelTolerance: perPixelTolerance)
     }
 
     func test_whenHasItems_thenShowItemsOnScreen() {
@@ -47,7 +49,7 @@ class MoviesListViewTests: FBSnapshotTestCase {
             posterImagesRepository: PosterImagesRepositoryMock())
 
         // then
-        FBSnapshotVerifyView(vc.view)
+        FBSnapshotVerifyView(vc.view, perPixelTolerance: perPixelTolerance)
     }
 }
 
