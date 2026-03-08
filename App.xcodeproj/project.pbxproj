@@ -17,6 +17,7 @@
 		1FA533D7201EF2B500747E55 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA533D6201EF2B500747E55 /* AppDIContainer.swift */; };
 		1FF082AC2394383800876A22 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FF082AE2394383800876A22 /* Localizable.strings */; };
 		1FF082BA2394512700876A22 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FF082AE2394383800876A22 /* Localizable.strings */; };
+		FAED8B442F5E1FDE004D6404 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAED8B432F5E1FDE004D6404 /* SceneDelegate.swift */; };
 		FC2B715C2156FF93002BD59E /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2B715B2156FF93002BD59E /* AppAppearance.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		9E4A0B5CC82E173E856CEB6B /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A0B62554C3FFD7A3A5D0C6 /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
 		CBB9D25966801C69DA29AD8C /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
+		FAED8B432F5E1FDE004D6404 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FB06D060A0A00A808278EDF0 /* Pods_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC2B715B2156FF93002BD59E /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +155,7 @@
 				1F1CD655222368CA00B0143C /* AppConfigurations.swift */,
 				1F1603252426B00400C173C6 /* AppFlowCoordinator.swift */,
 				1F84DECD2300673A00139F73 /* DIContainer */,
+				FAED8B432F5E1FDE004D6404 /* SceneDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				1FA533D7201EF2B500747E55 /* AppDIContainer.swift in Sources */,
 				1F1CD656222368CA00B0143C /* AppConfigurations.swift in Sources */,
 				1FA5338D201E1FDE00747E55 /* AppDelegate.swift in Sources */,
+				FAED8B442F5E1FDE004D6404 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
