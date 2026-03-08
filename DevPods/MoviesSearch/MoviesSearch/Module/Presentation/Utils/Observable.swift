@@ -9,12 +9,12 @@ import Foundation
 
 final public class Observable<Value> {
     
-    private struct Observer<Value> {
+    private struct Observer {
         weak var observer: AnyObject?
         let block: (Value) -> Void
     }
     
-    private var observers = [Observer<Value>]()
+    private var observers = [Observer]()
     
     public var value: Value {
         didSet { notifyObservers() }
