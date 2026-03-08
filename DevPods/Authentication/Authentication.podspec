@@ -19,6 +19,6 @@ TODO: Add long description of the pod here.
   s.resources = 'Authentication/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}'
     
   # 3rd party frameworks
-  s.dependency 'Alamofire', '4.9.1'
+  s.dependency 'Alamofire', '~> 5.8'
   
 end

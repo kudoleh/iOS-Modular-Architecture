@@ -22,7 +22,7 @@
   "resources": "Authentication/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}",
   "dependencies": {
     "Alamofire": [
-      "4.9.1"
+      "~> 5.8"
     ]
   }
 }
