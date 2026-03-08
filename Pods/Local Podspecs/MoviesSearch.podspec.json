@@ -30,8 +30,6 @@
       "test_type": "unit",
       "source_files": "MoviesSearch/Tests/**/*.{swift}",
       "dependencies": {
-        "Quick": [],
-        "Nimble": [],
         "iOSSnapshotTestCase": []
       }
     }

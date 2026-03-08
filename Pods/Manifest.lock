@@ -12,12 +12,8 @@ PODS:
   - MoviesSearch/Tests (0.1.0):
     - iOSSnapshotTestCase
     - Networking
-    - Nimble
-    - Quick
   - Networking (0.1.0)
   - Networking/Tests (0.1.0)
-  - Nimble (9.2.1)
-  - Quick (4.0.0)
 
 DEPENDENCIES:
   - Authentication (from `DevPods/Authentication`)
@@ -30,8 +26,6 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - iOSSnapshotTestCase
-    - Nimble
-    - Quick
 
 EXTERNAL SOURCES:
   Authentication:
@@ -45,10 +39,8 @@ SPEC CHECKSUMS:
   Alamofire: eec6cd8f73b242b59e34153a606a909eb9864b14
   Authentication: cbd36284e1312392dea4e213775bddb2b6c762a8
   iOSSnapshotTestCase: a670511f9ee3829c2b9c23e6e68f315fd7b6790f
-  MoviesSearch: fc5365ee0a87f510d4f91b2e83d7cb2fd59107cf
+  MoviesSearch: 6be4f3f69460d087a4cfb615e718dba564fd1552
   Networking: d2f86022b8e0b2af29515584ee9d6c8251bfd46b
-  Nimble: e7e615c0335ee4bf5b0d786685451e62746117d5
-  Quick: 6473349e43b9271a8d43839d9ba1c442ed1b7ac4
 
 PODFILE CHECKSUM: ef9e0bc90230dd7922633146937fee28851b9839
 

@@ -26,8 +26,6 @@ TODO: Add long description of the pod here.
   s.test_spec 'Tests' do |test_spec|
     test_spec.source_files = 'MoviesSearch/Tests/**/*.{swift}'
 
-    test_spec.dependency 'Quick'
-    test_spec.dependency 'Nimble'
     test_spec.dependency 'iOSSnapshotTestCase'
   end
   
