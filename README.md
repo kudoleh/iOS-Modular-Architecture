@@ -11,7 +11,7 @@ iOS Project implemented with Modular Architecture. (Can be used as Template proj
 <img src="README_FILES/ModulesDependenciesAuth.jpg" alt="Modules Dependencies with Authentication" width="650"/>
 </a>
 
-*More information in medium post*: <a href="https://tech.olx.com/modular-architecture-in-ios-c1a1e3bff8e9">Medium Post </a>
+*More information in medium post*: <a href="https://medium.com/olx-engineering/modular-architecture-in-ios-c1a1e3bff8e9">Medium Post </a>
 
 # How it can scale:
 
@@ -19,7 +19,7 @@ iOS Project implemented with Modular Architecture. (Can be used as Template proj
 <img src="README_FILES/ModulesScaled.jpeg" alt="Open medium to read about"/>
 </a>
 
-**Check medium post for more information**: <a href="https://tech.olx.com/modular-architecture-in-ios-c1a1e3bff8e9">Medium Post </a>
+**Check medium post for more information**: <a href="https://medium.com/olx-engineering/modular-architecture-in-ios-c1a1e3bff8e9">Medium Post </a>
 
 ## Video 1: Extracting Networking Service Module. <a href="#steps-to-create-module">see steps</a>
 <a href="https://www.youtube.com/embed/e2D-omTFJSA">
