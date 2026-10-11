@@ -89,7 +89,7 @@ struct MoviesListViewModelMock: MoviesListViewModel {
                      errorTitle: String = NSLocalizedString("Error", comment: ""),
                      searchBarPlaceholder: String = NSLocalizedString("Search Movies", comment: ""),
                      emptySearchTitle: String = NSLocalizedString("Search Movies", comment: ""),
-                     emptySearchSubtitle: String = NSLocalizedString("Type a title above, then tap Search to see results.", comment: ""),
+                     emptySearchSubtitle: String = NSLocalizedString("Type a title above, then tap Search or press Enter on the keyboard.", comment: ""),
                      noResultsTitle: String = NSLocalizedString("No Results", comment: ""),
                      noResultsSubtitleFormat: String = NSLocalizedString("No movies found for \u{201c}%@\u{201d}. Try another title.", comment: "")) -> Self {
         .init(items: items,
