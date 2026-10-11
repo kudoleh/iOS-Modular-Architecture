@@ -10,7 +10,10 @@ import FBSnapshotTestCase
 @testable import MoviesSearch
 
 class MoviesListViewTests: FBSnapshotTestCase {
-    
+
+    // Reference images were recorded on this simulator; see README.md.
+    private static let expectedSimulatorDeviceName = "iPhone 17e"
+
     let perPixelTolerance: CGFloat = 6/256
 
     let movies: [Movie] = [
@@ -22,6 +25,19 @@ class MoviesListViewTests: FBSnapshotTestCase {
     override func setUp() {
         super.setUp()
         self.recordMode = false
+        Self.verifyRunningOnExpectedSimulator()
+    }
+
+    private static func verifyRunningOnExpectedSimulator() {
+        let actualDeviceName = ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"]
+        guard actualDeviceName == expectedSimulatorDeviceName else {
+            fatalError("""
+                Snapshot tests must run on the "\(expectedSimulatorDeviceName)" simulator \
+                (the device the reference images were recorded on), but the tests are running on \
+                "\(actualDeviceName ?? "an unknown destination (not a simulator?)")". \
+                Select "\(expectedSimulatorDeviceName)" as the run destination and try again.
+                """)
+        }
     }
 
     func test_whenViewIsEmpty_thenShowEmptyScreen() {
