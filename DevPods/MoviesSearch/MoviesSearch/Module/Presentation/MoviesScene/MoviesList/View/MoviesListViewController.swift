@@ -13,13 +13,17 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
     @IBOutlet private var moviesListContainer: UIView!
     @IBOutlet private(set) var suggestionsListContainer: UIView!
     @IBOutlet private var searchBarContainer: UIView!
-    @IBOutlet private var emptyDataLabel: UILabel!
+    @IBOutlet private var emptyStateStackView: UIStackView!
+    @IBOutlet private var emptyStateIconImageView: UIImageView!
+    @IBOutlet private var emptyStateTitleLabel: UILabel!
+    @IBOutlet private var emptyStateSubtitleLabel: UILabel!
 
     private var viewModel: MoviesListViewModel!
     private var posterImagesRepository: PosterImagesRepository?
 
     private var moviesTableViewController: MoviesListTableViewController?
     private var searchController = UISearchController(searchResultsController: nil)
+    private let searchDebouncer: Debouncer = DefaultDebouncer(delay: 0.4)
 
     // MARK: - Lifecycle
 
@@ -48,6 +52,7 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        searchDebouncer.cancel()
         searchController.isActive = false
     }
 
@@ -64,8 +69,20 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
 
     private func setupViews() {
         title = viewModel.screenTitle
-        emptyDataLabel.text = viewModel.emptyDataTitle
         setupSearchController()
+    }
+
+    private func updateEmptyState() {
+        let query = viewModel.query.value
+        if query.isEmpty {
+            emptyStateIconImageView.image = UIImage(systemName: "magnifyingglass")
+            emptyStateTitleLabel.text = viewModel.emptySearchTitle
+            emptyStateSubtitleLabel.text = viewModel.emptySearchSubtitle
+        } else {
+            emptyStateIconImageView.image = UIImage(systemName: "film")
+            emptyStateTitleLabel.text = viewModel.noResultsTitle
+            emptyStateSubtitleLabel.text = viewModel.noResultsSubtitle(forQuery: query)
+        }
     }
 
     private func setupBehaviours() {
@@ -78,7 +95,7 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
     }
 
     private func updateLoading(_ loading: MoviesListViewModelLoading?) {
-        emptyDataLabel.isHidden = true
+        emptyStateStackView.isHidden = true
         moviesListContainer.isHidden = true
         suggestionsListContainer.isHidden = true
         LoadingView.hide()
@@ -88,7 +105,8 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
         case .nextPage: moviesListContainer.isHidden = false
         case .none:
             moviesListContainer.isHidden = viewModel.isEmpty
-            emptyDataLabel.isHidden = !viewModel.isEmpty
+            emptyStateStackView.isHidden = !viewModel.isEmpty
+            if viewModel.isEmpty { updateEmptyState() }
         }
 
         moviesTableViewController?.updateLoading(loading)
@@ -96,7 +114,8 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
     }
 
     private func updateQueriesSuggestions() {
-        guard searchController.searchBar.isFirstResponder else {
+        let searchText = searchController.searchBar.text ?? ""
+        guard searchController.searchBar.isFirstResponder, searchText.isEmpty else {
             viewModel.closeQueriesSuggestions()
             return
         }
@@ -104,6 +123,9 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
     }
 
     private func updateSearchQuery(_ query: String) {
+        // Live search already keeps the search bar's text in sync with `query` as the user types,
+        // so only force-sync (and dismiss search) when the query changed from elsewhere, e.g. a selected suggestion.
+        guard searchController.searchBar.text != query else { return }
         searchController.isActive = false
         searchController.searchBar.text = query
     }
@@ -111,6 +133,10 @@ final class MoviesListViewController: UIViewController, StoryboardInstantiable, 
     private func showError(_ error: String) {
         guard !error.isEmpty else { return }
         showAlert(title: viewModel.errorTitle, message: error)
+    }
+
+    @IBAction private func startSearchButtonTapped(_ sender: UIButton) {
+        searchController.searchBar.becomeFirstResponder()
     }
 }
 
@@ -136,13 +162,29 @@ extension MoviesListViewController {
 }
 
 extension MoviesListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchDebouncer.cancel()
+        updateQueriesSuggestions()
+
+        guard !searchText.isEmpty else {
+            viewModel.didCancelSearch()
+            return
+        }
+
+        searchDebouncer.execute { [weak self] in
+            self?.viewModel.didSearch(query: searchText)
+        }
+    }
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text, !searchText.isEmpty else { return }
+        searchDebouncer.cancel()
         searchController.isActive = false
         viewModel.didSearch(query: searchText)
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchDebouncer.cancel()
         viewModel.didCancelSearch()
     }
 }

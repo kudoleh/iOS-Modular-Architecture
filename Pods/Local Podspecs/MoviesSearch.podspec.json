@@ -16,7 +16,7 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "12.4"
+    "ios": "15.0"
   },
   "source_files": "MoviesSearch/Module/**/*.{swift}",
   "resources": "MoviesSearch/Module/**/*.{xcassets,json,storyboard,xib,xcdatamodeld}",

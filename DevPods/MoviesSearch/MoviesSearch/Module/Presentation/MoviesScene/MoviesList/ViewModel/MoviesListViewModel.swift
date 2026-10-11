@@ -37,9 +37,12 @@ protocol MoviesListViewModelOutput {
     var error: Observable<String> { get }
     var isEmpty: Bool { get }
     var screenTitle: String { get }
-    var emptyDataTitle: String { get }
     var errorTitle: String { get }
     var searchBarPlaceholder: String { get }
+    var emptySearchTitle: String { get }
+    var emptySearchSubtitle: String { get }
+    var noResultsTitle: String { get }
+    func noResultsSubtitle(forQuery query: String) -> String
 }
 
 protocol MoviesListViewModel: MoviesListViewModelInput, MoviesListViewModelOutput {}
@@ -57,6 +60,10 @@ final class DefaultMoviesListViewModel: MoviesListViewModel {
     private var pages: [MoviesPage] = []
     private var moviesLoadTask: Cancellable? { willSet { moviesLoadTask?.cancel() } }
 
+    /// Bumped on every load() / cancel, so a response from a superseded request can be told apart
+    /// from the latest one and ignored even if cancellation of the old task isn't honored in time.
+    private var latestRequestID = 0
+
     // MARK: - OUTPUT
 
     let items: Observable<[MoviesListItemViewModel]> = Observable([])
@@ -65,9 +72,16 @@ final class DefaultMoviesListViewModel: MoviesListViewModel {
     let error: Observable<String> = Observable("")
     var isEmpty: Bool { return items.value.isEmpty }
     let screenTitle = NSLocalizedString("Movies", comment: "")
-    let emptyDataTitle = NSLocalizedString("Search results", comment: "")
     let errorTitle = NSLocalizedString("Error", comment: "")
     let searchBarPlaceholder = NSLocalizedString("Search Movies", comment: "")
+    let emptySearchTitle = NSLocalizedString("Search Movies", comment: "")
+    let emptySearchSubtitle = NSLocalizedString("Type a title above and results will appear as you type.", comment: "")
+    let noResultsTitle = NSLocalizedString("No Results", comment: "")
+
+    func noResultsSubtitle(forQuery query: String) -> String {
+        let format = NSLocalizedString("No movies found for \u{201c}%@\u{201d}. Try another title.", comment: "")
+        return String(format: format, query)
+    }
 
     // MARK: - Init
 
@@ -98,13 +112,22 @@ final class DefaultMoviesListViewModel: MoviesListViewModel {
     }
 
     private func load(movieQuery: MovieQuery, loading: MoviesListViewModelLoading) {
+        latestRequestID += 1
+        let requestID = latestRequestID
+
         self.loading.value = loading
         query.value = movieQuery.query
 
         moviesLoadTask = searchMoviesUseCase.execute(
             requestValue: .init(query: movieQuery, page: nextPage),
-            cached: appendPage,
-            completion: { result in
+            cached: { [weak self] page in
+                guard let self = self, requestID == self.latestRequestID else { return }
+                self.appendPage(page)
+            },
+            completion: { [weak self] result in
+                // Ignore responses from a request that's been superseded by a newer search,
+                // in case this one is slower and would otherwise overwrite fresher results.
+                guard let self = self, requestID == self.latestRequestID else { return }
                 switch result {
                 case .success(let page):
                     self.appendPage(page)
@@ -145,7 +168,11 @@ extension DefaultMoviesListViewModel {
     }
 
     func didCancelSearch() {
+        latestRequestID += 1
         moviesLoadTask?.cancel()
+        resetPages()
+        query.value = ""
+        loading.value = .none
     }
 
     func showQueriesSuggestions() {

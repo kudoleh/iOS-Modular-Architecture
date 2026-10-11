@@ -33,7 +33,8 @@ iOS Project implemented with Modular Architecture. (Can be used as Template proj
 </a>
 
 ## Requirements: 
-* **Xcode Version 11.2.1+  Swift 5.0+ CocoaPods 1.8.4+**
+* **Xcode 14+, Swift 5.7+, iOS 15.0+, CocoaPods 1.16+**
+* Snapshot test reference images (`SnapshotTests/ReferenceImages_64`) are recorded on the **iPhone 17e** simulator (390 × 844 pt). Run the tests on that device, or re-record them (set `recordMode = true` in `MoviesListViewTests`) after changing the UI or the simulator.
 
 # Steps to create module
 * **Step 1. Setup App project with CocoaPods: (Video 1 00:06)**

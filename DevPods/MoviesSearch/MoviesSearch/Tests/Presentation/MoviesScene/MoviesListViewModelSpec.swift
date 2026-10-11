@@ -29,6 +29,20 @@ final class MoviesListViewModelTests: XCTestCase {
         }
     }
 
+    /// Captures the callbacks instead of calling them, so a test decides when (and in which order) responses arrive.
+    private class CapturingSearchMoviesUseCaseMock: SearchMoviesUseCase {
+        private(set) var cachedCallbacks: [(MoviesPage) -> Void] = []
+        private(set) var completions: [(Result<MoviesPage, Error>) -> Void] = []
+
+        func execute(requestValue: SearchMoviesUseCaseRequestValue,
+                     cached: @escaping (MoviesPage) -> Void,
+                     completion: @escaping (Result<MoviesPage, Error>) -> Void) -> Cancellable? {
+            cachedCallbacks.append(cached)
+            completions.append(completion)
+            return nil
+        }
+    }
+
     // MARK: - Tests
 
     func test_whenSearchReturnsFirstPage_thenViewModelContainsOnlyFirstPage() {
@@ -73,5 +87,56 @@ final class MoviesListViewModelTests: XCTestCase {
 
         // then
         XCTAssertNotNil(viewModel.error.value)
+    }
+
+    func test_whenNewerSearchStartsBeforeOlderSearchCompletes_thenStaleResponseIsIgnored() {
+        // given
+        let mock = CapturingSearchMoviesUseCaseMock()
+        let viewModel = DefaultMoviesListViewModel(searchMoviesUseCase: mock)
+
+        // when
+        viewModel.didSearch(query: "first query")
+        viewModel.didSearch(query: "second query")
+        XCTAssertEqual(mock.completions.count, 2)
+
+        // The newer (second) request's response arrives first...
+        mock.completions[1](.success(MoviesPage(page: 1, totalPages: 1, movies: [.stub(id: "second")])))
+        // ...then the superseded (first) request's response arrives late.
+        mock.completions[0](.success(MoviesPage(page: 1, totalPages: 1, movies: [.stub(id: "first")])))
+
+        // then: the stale "first" response must not overwrite the fresher "second" results
+        XCTAssertEqual(viewModel.items.value, [MoviesListItemViewModel(movie: .stub(id: "second"))])
+    }
+
+    func test_whenNewerSearchStartsBeforeOlderSearchReturnsCachedData_thenStaleCachedDataIsIgnored() {
+        // given
+        let mock = CapturingSearchMoviesUseCaseMock()
+        let viewModel = DefaultMoviesListViewModel(searchMoviesUseCase: mock)
+
+        // when
+        viewModel.didSearch(query: "first query")
+        viewModel.didSearch(query: "second query")
+        XCTAssertEqual(mock.cachedCallbacks.count, 2)
+
+        // Stale cached data for the superseded (first) request arrives late.
+        mock.cachedCallbacks[0](MoviesPage(page: 1, totalPages: 1, movies: [.stub(id: "staleCached")]))
+
+        // then: it is ignored (the second request hasn't returned anything yet)
+        XCTAssertTrue(viewModel.items.value.isEmpty)
+    }
+
+    func test_whenSearchIsCancelled_thenLateResponseForCancelledSearchIsIgnored() {
+        // given
+        let mock = CapturingSearchMoviesUseCaseMock()
+        let viewModel = DefaultMoviesListViewModel(searchMoviesUseCase: mock)
+
+        // when
+        viewModel.didSearch(query: "query")
+        viewModel.didCancelSearch()
+        mock.completions[0](.success(MoviesPage(page: 1, totalPages: 1, movies: [.stub(id: "lateResult")])))
+
+        // then: the late response for the cancelled search must not repopulate the list
+        XCTAssertTrue(viewModel.items.value.isEmpty)
+        XCTAssertEqual(viewModel.query.value, "")
     }
 }

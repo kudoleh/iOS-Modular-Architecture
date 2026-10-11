@@ -7,10 +7,12 @@
 */
 
 "Movies" = "Películas";
-"Search results" = "Resultados de búsqueda";
 "Release Date" = "Fecha de lanzamiento";
 "To be announced" = "Para ser anunciado";
 "Error" = "Error";
 "No internet connection" = "Sin conexión a internet";
 "Failed loading movies" = "Error al descargar películas";
 "Search Movies" = "Buscar películas";
+"Type a title above and results will appear as you type." = "Escribe un título arriba y los resultados aparecerán mientras escribes.";
+"No Results" = "Sin resultados";
+"No movies found for “%@”. Try another title." = "No se encontraron películas para “%@”. Prueba otro título.";

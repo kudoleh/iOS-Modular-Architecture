@@ -28,7 +28,6 @@ class MoviesListViewTests: FBSnapshotTestCase {
         // given
         let vc = MoviesListViewController.create(
             with: MoviesListViewModelMock.stub(isEmpty: true,
-                                               emptyDataTitle: NSLocalizedString("Search results", comment: ""),
                                                searchBarPlaceholder: NSLocalizedString("Search Movies", comment: "")
             ),
             posterImagesRepository: PosterImagesRepositoryMock())
@@ -43,7 +42,6 @@ class MoviesListViewTests: FBSnapshotTestCase {
         let vc = MoviesListViewController.create(
             with: MoviesListViewModelMock.stub(items: Observable(items),
                                                isEmpty: false,
-                                               emptyDataTitle: NSLocalizedString("Search results", comment: ""),
                                                searchBarPlaceholder: NSLocalizedString("Search Movies", comment: "")
             ),
             posterImagesRepository: PosterImagesRepositoryMock())
@@ -71,9 +69,16 @@ struct MoviesListViewModelMock: MoviesListViewModel {
     var error: Observable<String>
     var isEmpty: Bool
     var screenTitle: String
-    var emptyDataTitle: String
     var errorTitle: String
     var searchBarPlaceholder: String
+    var emptySearchTitle: String
+    var emptySearchSubtitle: String
+    var noResultsTitle: String
+    var noResultsSubtitleFormat: String
+
+    func noResultsSubtitle(forQuery query: String) -> String {
+        String(format: noResultsSubtitleFormat, query)
+    }
 
     static func stub(items: Observable<[MoviesListItemViewModel]> = Observable([]),
                      loading: Observable<MoviesListViewModelLoading?> = Observable(nil),
@@ -81,17 +86,23 @@ struct MoviesListViewModelMock: MoviesListViewModel {
                      error: Observable<String> = Observable(""),
                      isEmpty: Bool = true,
                      screenTitle: String = NSLocalizedString("Movies", comment: ""),
-                     emptyDataTitle: String = NSLocalizedString("Search results", comment: ""),
                      errorTitle: String = NSLocalizedString("Error", comment: ""),
-                     searchBarPlaceholder: String = NSLocalizedString("Search Movies", comment: "")) -> Self {
+                     searchBarPlaceholder: String = NSLocalizedString("Search Movies", comment: ""),
+                     emptySearchTitle: String = NSLocalizedString("Search Movies", comment: ""),
+                     emptySearchSubtitle: String = NSLocalizedString("Type a title above and results will appear as you type.", comment: ""),
+                     noResultsTitle: String = NSLocalizedString("No Results", comment: ""),
+                     noResultsSubtitleFormat: String = NSLocalizedString("No movies found for \u{201c}%@\u{201d}. Try another title.", comment: "")) -> Self {
         .init(items: items,
               loading: loading,
               query: query,
               error: error,
               isEmpty: isEmpty,
               screenTitle: screenTitle,
-              emptyDataTitle: emptyDataTitle,
               errorTitle: errorTitle,
-              searchBarPlaceholder: searchBarPlaceholder)
+              searchBarPlaceholder: searchBarPlaceholder,
+              emptySearchTitle: emptySearchTitle,
+              emptySearchSubtitle: emptySearchSubtitle,
+              noResultsTitle: noResultsTitle,
+              noResultsSubtitleFormat: noResultsSubtitleFormat)
     }
 }
