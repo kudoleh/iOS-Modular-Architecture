@@ -137,6 +137,5 @@ final class MoviesListViewModelTests: XCTestCase {
 
         // then: the late response for the cancelled search must not repopulate the list
         XCTAssertTrue(viewModel.items.value.isEmpty)
-        XCTAssertEqual(viewModel.query.value, "")
     }
 }

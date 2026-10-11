@@ -75,7 +75,7 @@ final class DefaultMoviesListViewModel: MoviesListViewModel {
     let errorTitle = NSLocalizedString("Error", comment: "")
     let searchBarPlaceholder = NSLocalizedString("Search Movies", comment: "")
     let emptySearchTitle = NSLocalizedString("Search Movies", comment: "")
-    let emptySearchSubtitle = NSLocalizedString("Type a title above and results will appear as you type.", comment: "")
+    let emptySearchSubtitle = NSLocalizedString("Type a title above, then tap Search to see results.", comment: "")
     let noResultsTitle = NSLocalizedString("No Results", comment: "")
 
     func noResultsSubtitle(forQuery query: String) -> String {
@@ -170,8 +170,6 @@ extension DefaultMoviesListViewModel {
     func didCancelSearch() {
         latestRequestID += 1
         moviesLoadTask?.cancel()
-        resetPages()
-        query.value = ""
         loading.value = .none
     }
 
